@@ -56,36 +56,39 @@ const quizzes = {
 };
 
 // ============================================
-// 🎨 TEMAS VISUAIS (Adicione quantos quiser!)
+// 🎨 TEMAS VISUAIS
 // ============================================
 
 const themes = {
-    // Tema 1: Facebook Style (Azul)
+    // Tema 1: Facebook Style (PADRÃO - sempre o primeiro)
     facebook: {
         name: 'Facebook',
         css: `
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
             .quiz-container {
                 background-color: #ffffff;
                 color: #000000;
                 font-family: Arial, sans-serif;
                 max-width: 450px;
                 margin: 0 auto;
-                box-sizing: border-box;
             }
             html, body {
                 background-color: #4267B2 !important;
                 margin: 0;
                 padding: 0;
-                overflow-x: hidden;
                 width: 100%;
-                height: 100%;
+                min-height: 100vh;
             }
             .quiz-content-block {
                 background-color: #ffffff !important;
                 border-radius: 0 !important;
                 box-shadow: none !important;
                 margin: 0 !important;
-                padding: 0 !important;
+                padding: 0 0 80px 0 !important;
                 max-width: 100%;
                 min-height: 100vh;
                 display: flex;
@@ -141,7 +144,6 @@ const themes = {
                 justify-content: center;
                 min-height: 52px;
                 width: 100%;
-                box-sizing: border-box;
             }
             .quiz-button:hover {
                 background-color: #365899 !important;
@@ -156,15 +158,17 @@ const themes = {
                 font-size: 12px;
                 color: #65676b;
                 background-color: #f0f2f5;
-                flex-shrink: 0;
                 width: 100%;
-                box-sizing: border-box;
-                position: absolute;
+                position: fixed;
                 bottom: 0;
                 left: 0;
             }
             .quiz-copyright {
                 color: #65676b !important;
+                white-space: nowrap;
+            }
+            .quiz-privacy {
+                white-space: nowrap;
             }
             .quiz-privacy a {
                 color: #4267b2 !important;
@@ -178,6 +182,10 @@ const themes = {
                     border-radius: 8px !important;
                     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
                     min-height: auto;
+                    padding-bottom: 0 !important;
+                }
+                .quiz-header {
+                    border-radius: 8px 8px 0 0;
                 }
                 .quiz-footer {
                     border-radius: 0 0 8px 8px;
@@ -187,9 +195,6 @@ const themes = {
             @media (max-width: 767px) {
                 html, body {
                     background-color: #ffffff !important;
-                }
-                .quiz-content-block {
-                    padding-bottom: 70px;
                 }
                 .quiz-header {
                     border-bottom: none;
@@ -210,7 +215,8 @@ const themes = {
                     border-radius: 12px !important;
                 }
                 .quiz-footer {
-                    position: fixed;
+                    padding: 16px;
+                    font-size: 12px;
                     background-color: #ffffff !important;
                     border-top: none;
                 }
@@ -218,43 +224,413 @@ const themes = {
         `
     },
 
-    // Tema 2: Verde Moderno
-    green: {
-        name: 'Green',
+    // Tema 2: WhatsApp Style (Verde)
+    whatsapp: {
+        name: 'WhatsApp',
         css: `
-            .quiz-container {
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                margin: 0 auto;
-                max-width: 450px;
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
             }
             html, body {
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+                background-color: #075E54 !important;
                 margin: 0;
                 padding: 0;
                 width: 100%;
-                height: 100%;
+                min-height: 100vh;
+            }
+            .quiz-container {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+                max-width: 450px;
+                margin: 0 auto;
             }
             .quiz-content-block {
-                background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
-                border-radius: 20px !important;
-                box-shadow: 0 20px 60px rgba(0,0,0,0.3) !important;
-                margin: 20px !important;
-                padding: 0 !important;
-                min-height: 90vh;
+                background-color: #ffffff !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 0 0 80px 0 !important;
+                min-height: 100vh;
                 display: flex;
                 flex-direction: column;
-                position: relative;
+                width: 100%;
             }
             .quiz-header {
-                padding: 30px 20px;
-                border-bottom: 2px solid rgba(255,255,255,0.3);
+                background-color: #075E54;
+                padding: 20px;
             }
             .quiz-title {
                 color: #ffffff !important;
-                font-size: 28px !important;
+                font-size: 20px !important;
+                font-weight: 600 !important;
+                text-align: center;
+            }
+            .quiz-question-step {
+                padding: 30px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .quiz-question {
+                color: #303030 !important;
+                font-size: 18px !important;
+                font-weight: 400 !important;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            .quiz-answers {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+            .quiz-button {
+                background-color: #25D366 !important;
+                color: #ffffff !important;
+                border: none !important;
+                border-radius: 25px !important;
+                padding: 16px 24px !important;
+                font-size: 17px !important;
+                font-weight: 600 !important;
+                cursor: pointer;
+                transition: all 0.3s;
+                box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+            }
+            .quiz-button:hover {
+                background-color: #128C7E !important;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(18, 140, 126, 0.4);
+            }
+            .quiz-footer {
+                background-color: #f0f0f0;
+                padding: 15px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 12px;
+                color: #667781;
+                width: 100%;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+            }
+            .quiz-copyright {
+                color: #667781 !important;
+            }
+            .quiz-privacy a {
+                color: #075E54 !important;
+                text-decoration: none;
+                font-weight: 600;
+            }
+            @media (min-width: 768px) {
+                .quiz-content-block {
+                    max-width: 500px;
+                    margin: 20px auto !important;
+                    border-radius: 10px !important;
+                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+                    min-height: auto;
+                    padding-bottom: 0 !important;
+                }
+                .quiz-header {
+                    border-radius: 10px 10px 0 0;
+                }
+                .quiz-footer {
+                    border-radius: 0 0 10px 10px;
+                    position: relative;
+                }
+            }
+            @media (max-width: 767px) {
+                html, body {
+                    background-color: #ECE5DD !important;
+                }
+                .quiz-content-block {
+                    background-color: #ECE5DD !important;
+                }
+                .quiz-header {
+                    border-radius: 0;
+                }
+            }
+        `
+    },
+
+    // Tema 3: Instagram Style (Gradiente)
+    instagram: {
+        name: 'Instagram',
+        css: `
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            html, body {
+                background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                min-height: 100vh;
+            }
+            .quiz-container {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+                max-width: 450px;
+                margin: 0 auto;
+            }
+            .quiz-content-block {
+                background-color: #ffffff !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 0 0 80px 0 !important;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+            .quiz-header {
+                padding: 25px 20px;
+                border-bottom: 1px solid #dbdbdb;
+            }
+            .quiz-title {
+                color: #262626 !important;
+                font-size: 22px !important;
                 font-weight: 700 !important;
                 text-align: center;
-                text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            }
+            .quiz-question-step {
+                padding: 40px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .quiz-question {
+                color: #262626 !important;
+                font-size: 18px !important;
+                font-weight: 500 !important;
+                text-align: center;
+                margin-bottom: 35px;
+            }
+            .quiz-answers {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+            .quiz-button {
+                background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
+                color: #ffffff !important;
+                border: none !important;
+                border-radius: 8px !important;
+                padding: 16px 24px !important;
+                font-size: 16px !important;
+                font-weight: 700 !important;
+                cursor: pointer;
+                transition: all 0.3s;
+                box-shadow: 0 4px 12px rgba(188, 24, 136, 0.3);
+            }
+            .quiz-button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 16px rgba(188, 24, 136, 0.4);
+            }
+            .quiz-footer {
+                background-color: #fafafa;
+                padding: 15px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 12px;
+                color: #8e8e8e;
+                border-top: 1px solid #dbdbdb;
+                width: 100%;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+            }
+            .quiz-copyright {
+                color: #8e8e8e !important;
+            }
+            .quiz-privacy a {
+                color: #0095f6 !important;
+                text-decoration: none;
+                font-weight: 600;
+            }
+            @media (min-width: 768px) {
+                .quiz-content-block {
+                    max-width: 500px;
+                    margin: 20px auto !important;
+                    border-radius: 12px !important;
+                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+                    min-height: auto;
+                    padding-bottom: 0 !important;
+                }
+                .quiz-footer {
+                    border-radius: 0 0 12px 12px;
+                    position: relative;
+                }
+            }
+            @media (max-width: 767px) {
+                html, body {
+                    background-color: #ffffff !important;
+                }
+            }
+        `
+    },
+
+    // Tema 4: Twitter/X Style (Preto e Azul)
+    twitter: {
+        name: 'Twitter',
+        css: `
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            html, body {
+                background-color: #000000 !important;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                min-height: 100vh;
+            }
+            .quiz-container {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+                max-width: 450px;
+                margin: 0 auto;
+            }
+            .quiz-content-block {
+                background-color: #000000 !important;
+                border: 1px solid #2f3336 !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 0 0 80px 0 !important;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+            .quiz-header {
+                padding: 20px;
+                border-bottom: 1px solid #2f3336;
+            }
+            .quiz-title {
+                color: #ffffff !important;
+                font-size: 20px !important;
+                font-weight: 700 !important;
+                text-align: center;
+            }
+            .quiz-question-step {
+                padding: 35px 20px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .quiz-question {
+                color: #e7e9ea !important;
+                font-size: 18px !important;
+                font-weight: 400 !important;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            .quiz-answers {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+            .quiz-button {
+                background-color: #1d9bf0 !important;
+                color: #ffffff !important;
+                border: none !important;
+                border-radius: 25px !important;
+                padding: 16px 24px !important;
+                font-size: 17px !important;
+                font-weight: 700 !important;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+            .quiz-button:hover {
+                background-color: #1a8cd8 !important;
+            }
+            .quiz-footer {
+                background-color: #000000;
+                padding: 15px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 12px;
+                color: #71767b;
+                border-top: 1px solid #2f3336;
+                width: 100%;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+            }
+            .quiz-copyright {
+                color: #71767b !important;
+            }
+            .quiz-privacy a {
+                color: #1d9bf0 !important;
+                text-decoration: none;
+                font-weight: 600;
+            }
+            @media (min-width: 768px) {
+                .quiz-content-block {
+                    max-width: 600px;
+                    margin: 20px auto !important;
+                    border-radius: 16px !important;
+                    min-height: auto;
+                    padding-bottom: 0 !important;
+                }
+                .quiz-footer {
+                    border-radius: 0 0 16px 16px;
+                    position: relative;
+                }
+            }
+        `
+    },
+
+    // Tema 5: YouTube Style (Vermelho)
+    youtube: {
+        name: 'YouTube',
+        css: `
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            html, body {
+                background-color: #0f0f0f !important;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                min-height: 100vh;
+            }
+            .quiz-container {
+                font-family: Roboto, Arial, sans-serif;
+                max-width: 450px;
+                margin: 0 auto;
+            }
+            .quiz-content-block {
+                background-color: #212121 !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                margin: 0 !important;
+                padding: 0 0 80px 0 !important;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+            }
+            .quiz-header {
+                background-color: #0f0f0f;
+                padding: 20px;
+                border-bottom: 1px solid #303030;
+            }
+            .quiz-title {
+                color: #ffffff !important;
+                font-size: 20px !important;
+                font-weight: 500 !important;
+                text-align: center;
             }
             .quiz-question-step {
                 padding: 40px 20px;
@@ -265,11 +641,10 @@ const themes = {
             }
             .quiz-question {
                 color: #ffffff !important;
-                font-size: 20px !important;
-                font-weight: 500 !important;
+                font-size: 18px !important;
+                font-weight: 400 !important;
                 text-align: center;
-                margin-bottom: 30px;
-                text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+                margin-bottom: 35px;
             }
             .quiz-answers {
                 display: flex;
@@ -277,249 +652,57 @@ const themes = {
                 gap: 15px;
             }
             .quiz-button {
-                background-color: #ffffff !important;
-                color: #11998e !important;
-                border: none !important;
-                border-radius: 50px !important;
-                padding: 18px 30px !important;
-                font-size: 18px !important;
-                font-weight: 700 !important;
-                cursor: pointer;
-                transition: all 0.3s;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-                text-transform: uppercase;
-            }
-            .quiz-button:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-            }
-            .quiz-footer {
-                background: rgba(0,0,0,0.2);
-                padding: 15px;
-                display: flex;
-                justify-content: space-between;
-                color: #ffffff;
-                border-radius: 0 0 20px 20px;
-            }
-            .quiz-copyright {
-                color: #ffffff !important;
-            }
-            .quiz-privacy a {
-                color: #ffffff !important;
-                font-weight: 600;
-            }
-            @media (max-width: 767px) {
-                html, body {
-                    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
-                }
-                .quiz-content-block {
-                    margin: 0 !important;
-                    border-radius: 0 !important;
-                    min-height: 100vh;
-                }
-                .quiz-footer {
-                    border-radius: 0;
-                }
-            }
-        `
-    },
-
-    // Tema 3: Rosa/Vermelho Vibrante
-    pink: {
-        name: 'Pink',
-        css: `
-            .quiz-container {
-                font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
-                margin: 0 auto;
-                max-width: 450px;
-            }
-            html, body {
-                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                height: 100%;
-            }
-            .quiz-content-block {
-                background: #ffffff !important;
-                border-radius: 25px !important;
-                box-shadow: 0 25px 50px rgba(245,87,108,0.3) !important;
-                margin: 20px !important;
-                padding: 0 !important;
-                min-height: 90vh;
-                display: flex;
-                flex-direction: column;
-                overflow: hidden;
-            }
-            .quiz-header {
-                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-                padding: 35px 25px;
-            }
-            .quiz-title {
-                color: #ffffff !important;
-                font-size: 26px !important;
-                font-weight: 900 !important;
-                text-align: center;
-                letter-spacing: -0.5px;
-            }
-            .quiz-question-step {
-                padding: 50px 25px;
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-            }
-            .quiz-question {
-                color: #2d3436 !important;
-                font-size: 22px !important;
-                font-weight: 700 !important;
-                text-align: center;
-                margin-bottom: 35px;
-            }
-            .quiz-answers {
-                display: flex;
-                flex-direction: column;
-                gap: 18px;
-            }
-            .quiz-button {
-                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+                background-color: #ff0000 !important;
                 color: #ffffff !important;
                 border: none !important;
-                border-radius: 15px !important;
-                padding: 20px 25px !important;
-                font-size: 20px !important;
-                font-weight: 900 !important;
-                cursor: pointer;
-                transition: all 0.3s;
-                box-shadow: 0 8px 20px rgba(245,87,108,0.4);
-                text-transform: uppercase;
-                letter-spacing: 1px;
-            }
-            .quiz-button:hover {
-                transform: scale(1.05);
-                box-shadow: 0 12px 30px rgba(245,87,108,0.5);
-            }
-            .quiz-footer {
-                background: #f8f9fa;
-                padding: 20px;
-                display: flex;
-                justify-content: space-between;
-                color: #636e72;
-                font-size: 13px;
-            }
-            .quiz-copyright {
-                color: #636e72 !important;
-            }
-            .quiz-privacy a {
-                color: #f5576c !important;
-                font-weight: 700;
-            }
-            @media (max-width: 767px) {
-                .quiz-content-block {
-                    margin: 0 !important;
-                    border-radius: 0 !important;
-                    min-height: 100vh;
-                }
-            }
-        `
-    },
-
-    // Tema 4: Minimalista Preto/Branco
-    minimal: {
-        name: 'Minimal',
-        css: `
-            .quiz-container {
-                font-family: 'Helvetica Neue', Arial, sans-serif;
-                margin: 0 auto;
-                max-width: 450px;
-            }
-            html, body {
-                background-color: #000000 !important;
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                height: 100%;
-            }
-            .quiz-content-block {
-                background: #ffffff !important;
-                border-radius: 0 !important;
-                box-shadow: none !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
-                border: 3px solid #000000;
-            }
-            .quiz-header {
-                padding: 40px 30px;
-                border-bottom: 3px solid #000000;
-            }
-            .quiz-title {
-                color: #000000 !important;
-                font-size: 32px !important;
-                font-weight: 900 !important;
-                text-align: center;
-                text-transform: uppercase;
-                letter-spacing: -1px;
-            }
-            .quiz-question-step {
-                padding: 60px 30px;
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-            }
-            .quiz-question {
-                color: #000000 !important;
-                font-size: 24px !important;
-                font-weight: 600 !important;
-                text-align: center;
-                margin-bottom: 40px;
-            }
-            .quiz-answers {
-                display: flex;
-                flex-direction: column;
-                gap: 20px;
-            }
-            .quiz-button {
-                background-color: #000000 !important;
-                color: #ffffff !important;
-                border: 3px solid #000000 !important;
-                border-radius: 0 !important;
-                padding: 22px 30px !important;
-                font-size: 20px !important;
-                font-weight: 900 !important;
+                border-radius: 2px !important;
+                padding: 16px 24px !important;
+                font-size: 16px !important;
+                font-weight: 500 !important;
                 cursor: pointer;
                 transition: all 0.2s;
                 text-transform: uppercase;
-                letter-spacing: 2px;
+                letter-spacing: 0.5px;
             }
             .quiz-button:hover {
-                background-color: #ffffff !important;
-                color: #000000 !important;
+                background-color: #cc0000 !important;
             }
             .quiz-footer {
-                background: #000000;
-                padding: 20px 30px;
+                background-color: #0f0f0f;
+                padding: 15px 20px;
                 display: flex;
                 justify-content: space-between;
-                color: #ffffff;
+                align-items: center;
                 font-size: 12px;
-                font-weight: 600;
+                color: #aaaaaa;
+                border-top: 1px solid #303030;
+                width: 100%;
+                position: fixed;
+                bottom: 0;
+                left: 0;
             }
             .quiz-copyright {
-                color: #ffffff !important;
+                color: #aaaaaa !important;
             }
             .quiz-privacy a {
-                color: #ffffff !important;
-                font-weight: 900;
+                color: #3ea6ff !important;
+                text-decoration: none;
+                font-weight: 500;
             }
-            @media (max-width: 767px) {
+            @media (min-width: 768px) {
                 .quiz-content-block {
-                    border: none;
-                    border-left: 3px solid #000000;
-                    border-right: 3px solid #000000;
+                    max-width: 550px;
+                    margin: 20px auto !important;
+                    border-radius: 12px !important;
+                    min-height: auto;
+                    padding-bottom: 0 !important;
+                }
+                .quiz-header {
+                    border-radius: 12px 12px 0 0;
+                }
+                .quiz-footer {
+                    border-radius: 0 0 12px 12px;
+                    position: relative;
                 }
             }
         `
@@ -548,9 +731,18 @@ function getNextTheme() {
     const usedThemes = getCookie('usedThemes');
     let usedArray = usedThemes ? JSON.parse(decodeURIComponent(usedThemes)) : [];
     
-    // Se já viu todos, resetar
+    // PRIMEIRA VISITA: sempre Facebook
+    if (usedArray.length === 0) {
+        usedArray.push('facebook');
+        setCookie('usedThemes', encodeURIComponent(JSON.stringify(usedArray)), 365);
+        return 'facebook';
+    }
+    
+    // Se já viu todos, resetar (mas manter facebook como próximo)
     if (usedArray.length >= themeKeys.length) {
-        usedArray = [];
+        usedArray = ['facebook'];
+        setCookie('usedThemes', encodeURIComponent(JSON.stringify(usedArray)), 365);
+        return 'facebook';
     }
     
     // Pegar temas não usados
