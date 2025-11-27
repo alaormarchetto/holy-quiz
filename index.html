@@ -4,981 +4,281 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
-    <style id="dynamic-styles">
-        /* Estilos serão injetados dinamicamente pelo JavaScript */
+    <style>
+        /* Reset & Base - Meta/Facebook Inspired Theme */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #F0F2F5 !important; /* Meta Light Gray Background */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            color: #1c1e21;
+        }
+
+        /* Container - Centers the card on desktop */
+        .quiz-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Card Component */
+        .quiz-content-block {
+            background-color: #ffffff !important;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 8px !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1) !important;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            margin: 20px auto !important;
+            position: relative;
+            min-height: auto;
+        }
+
+        /* Header */
+        .quiz-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid #F0F2F5;
+            background: #fff;
+            text-align: center;
+        }
+
+        .quiz-title {
+            color: #1c1e21 !important;
+            font-size: 24px !important;
+            font-weight: 700 !important;
+            line-height: 1.2 !important;
+            margin: 0 !important;
+            letter-spacing: -0.5px;
+        }
+
+        /* Question Section */
+        .quiz-question-step {
+            padding: 32px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .quiz-question {
+            color: #1c1e21 !important;
+            font-size: 20px !important;
+            font-weight: 500 !important;
+            line-height: 1.4 !important;
+            text-align: center;
+            margin-bottom: 32px;
+            max-width: 400px;
+        }
+
+        /* Answer Buttons */
+        .quiz-answers {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .quiz-button {
+            background-color: #1877F2 !important; /* Modern Facebook Blue */
+            color: #ffffff !important;
+            border: none !important;
+            border-radius: 6px !important;
+            padding: 0 20px !important;
+            height: 56px; /* Taller tap target */
+            font-size: 17px !important;
+            font-weight: 600 !important;
+            cursor: pointer;
+            transition: transform 0.1s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            position: relative;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .quiz-button:hover {
+            background-color: #166FE5 !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-button:active {
+            background-color: #1562C9 !important;
+            transform: scale(0.98);
+            box-shadow: none;
+        }
+
+        /* Footer */
+        .quiz-footer {
+            padding: 16px 24px;
+            background-color: #ffffff;
+            border-top: 1px solid #F0F2F5;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #65676B;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .quiz-copyright {
+            color: #65676B !important;
+            font-size: 12px;
+        }
+
+        .quiz-privacy a {
+            color: #65676B !important;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 12px;
+            transition: color 0.2s;
+        }
+
+        .quiz-privacy a:hover {
+            color: #1877F2 !important;
+            text-decoration: underline;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 767px) {
+            .quiz-container {
+                padding: 0;
+                display: block;
+                background-color: #ffffff;
+            }
+
+            .quiz-content-block {
+                margin: 0 !important;
+                max-width: 100%;
+                min-height: 100vh;
+                min-height: -webkit-fill-available; /* Fix for iOS Safari */
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                justify-content: space-between;
+            }
+
+            .quiz-header {
+                padding: 16px 20px;
+                text-align: left;
+                border-bottom: none;
+            }
+
+            .quiz-title {
+                font-size: 22px !important;
+            }
+
+            .quiz-question-step {
+                padding: 0 20px;
+                justify-content: center;
+                flex: 1;
+            }
+
+            .quiz-question {
+                font-size: 18px !important;
+                text-align: left;
+                align-self: flex-start;
+                margin-bottom: 40px;
+            }
+
+            .quiz-answers {
+                margin-bottom: 20px;
+            }
+            
+            .quiz-button {
+                border-radius: 8px !important;
+                font-size: 18px !important;
+            }
+
+            .quiz-footer {
+                padding: 20px;
+                border-top: none;
+                position: relative;
+                background: transparent;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="quiz-container">
         <div class="quiz-content-block">
             <div class="quiz-header">
-                <h1 class="quiz-title">Título do Quiz</h1>
+                <h1 class="quiz-title">
+                    Obtenga Productos Gratis Entregados en su Hogar
+                </h1>
             </div>
             
-            <div class="quiz-question-step" data-index="0" style="display: block;">
-                <div class="quiz-question">Pergunta aqui</div>
-                <div class="quiz-answers"></div>
+            <div class="quiz-question-step" data-index="0">
+                <div class="quiz-question">
+                    ¿Le gustaría recibir productos gratis?
+                </div>
+                <div class="quiz-answers">
+                    <button class="quiz-button">Sí</button>
+                    <button class="quiz-button">No</button>
+                </div>
             </div>
             
             <div class="quiz-footer">
-                <div class="quiz-copyright">© 2025</div>
+                <div class="quiz-copyright">
+                    © 2025
+                </div>
                 <div class="quiz-privacy">
-                    <a href="#" target="_blank">Política de Privacidad</a>
+                    <a href="https://clothesshein.com/privacy-policy/" target="_blank">
+                        Política de Privacidad
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-// ============================================
-// 📝 ÁREA DE CONFIGURAÇÃO DOS QUIZZES
-// ============================================
+        // Configuração dos quizzes
+        const quizzes = {
+            'clsh-xmas': {
+                title: 'Obtenga Productos Gratis Entregados en su Hogar',
+                question: '¿Le gustaría recibir productos gratis?',
+                answers: [
+                    { text: 'Sí', redirect: 'https://clothesshein.com/shn-1/' },
+                    { text: 'No', redirect: 'https://clothesshein.com/shn-1/' }
+                ],
+                privacyUrl: 'https://clothesshein.com/privacy-policy/'
+            },
+            'clsh-rp': {
+                title: 'Obtenga Productos Gratis Entregados en su Hogar',
+                question: '¿Le gustaría recibir productos gratis?',
+                answers: [
+                    { text: 'Sí', redirect: 'https://clothesshein.com/shn-1/' },
+                    { text: 'No', redirect: 'https://clothesshein.com/shn-1/' }
+                ],
+                privacyUrl: 'https://clothesshein.com/privacy-policy/'
+            }
+        };
 
-const quizzes = {
-    'clsh-xmas': {
-        title: 'Obtenga Productos Gratis Entregados en su Hogar',
-        question: '¿Le gustaría recibir productos gratis?',
-        answers: [
-            { text: 'Sí', redirect: 'https://clothesshein.com/shn-1/' },
-            { text: 'No', redirect: 'https://clothesshein.com/shn-1/' }
-        ],
-        privacyUrl: 'https://clothesshein.com/privacy-policy/'
-    },
-    'clsh-rp': {
-        title: 'Obtenga Productos Gratis Entregados en su Hogar',
-        question: '¿Le gustaría recibir productos gratis?',
-        answers: [
-            { text: 'Sí', redirect: 'https://clothesshein.com/shn-1/' },
-            { text: 'No', redirect: 'https://clothesshein.com/shn-1/' }
-        ],
-        privacyUrl: 'https://clothesshein.com/privacy-policy/'
-    }
-};
+        // Função para pegar o ID da URL
+        function getQuizId() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
 
-// ============================================
-// 🎨 TEMAS VISUAIS
-// ============================================
-
-const themes = {
-    // Tema 1: Facebook Style (MELHORADO)
-    facebook: {
-        name: 'Facebook',
-        css: `
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-            html, body {
-                background-color: #4267B2 !important;
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                min-height: 100vh;
-            }
-            .quiz-container {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-                max-width: 450px;
-                margin: 0 auto;
-            }
-            .quiz-content-block {
-                background-color: #ffffff !important;
-                border-radius: 0 !important;
-                box-shadow: none !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                max-width: 100%;
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                position: relative;
-            }
-            .quiz-header {
-                padding: 16px;
-                border-bottom: 1px solid #e4e6eb;
-                flex-shrink: 0;
-            }
-            .quiz-title {
-                color: #1c1e21 !important;
-                font-size: 20px !important;
-                font-weight: 600 !important;
-                line-height: 24px !important;
-                margin: 0 !important;
-                text-align: left;
-            }
-            .quiz-question-step {
-                padding: 16px;
-                flex: 1 0 auto;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                padding-bottom: 100px;
-            }
-            .quiz-question {
-                color: #65676b !important;
-                font-size: 14px !important;
-                font-weight: 400 !important;
-                line-height: 20px !important;
-                text-align: left;
-                margin-bottom: 20px;
-            }
-            .quiz-answers {
-                display: flex;
-                flex-direction: column;
-                gap: 12px;
-            }
-            .quiz-button {
-                background-color: #4267b2 !important;
-                color: #ffffff !important;
-                border: none !important;
-                border-radius: 8px !important;
-                padding: 14px 16px !important;
-                font-size: 16px !important;
-                font-weight: 600 !important;
-                cursor: pointer;
-                transition: background-color 0.2s;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                min-height: 52px;
-                width: 100%;
-            }
-            .quiz-button:hover {
-                background-color: #365899 !important;
-            }
-            .quiz-footer {
-                border-top: 1px solid #e4e6eb;
-                padding: 16px;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                font-size: 12px;
-                color: #65676b;
-                background-color: #f0f2f5;
-                width: 100%;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                z-index: 1000;
-            }
-            .quiz-copyright {
-                color: #65676b !important;
-                white-space: nowrap;
-            }
-            .quiz-privacy {
-                white-space: nowrap;
-            }
-            .quiz-privacy a {
-                color: #4267b2 !important;
-                text-decoration: none;
-                font-weight: 500;
-            }
-            @media (min-width: 768px) {
-                .quiz-content-block {
-                    max-width: 500px;
-                    margin: 20px auto !important;
-                    border-radius: 8px !important;
-                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-                    min-height: auto;
-                }
-                .quiz-header {
-                    border-radius: 8px 8px 0 0;
-                }
-                .quiz-question-step {
-                    padding-bottom: 16px;
-                }
-                .quiz-footer {
-                    border-radius: 0 0 8px 8px;
-                    position: relative;
-                }
-            }
-            @media (max-width: 767px) {
-                html, body {
-                    background-color: #ffffff !important;
-                }
-                .quiz-header {
-                    border-bottom: none;
-                    padding: 20px 16px;
-                }
-                .quiz-title {
-                    font-size: 24px !important;
-                    color: #000000 !important;
-                    font-weight: 700 !important;
-                }
-                .quiz-question {
-                    font-size: 16px !important;
-                    color: #666666 !important;
-                }
-                .quiz-button {
-                    font-size: 18px !important;
-                    min-height: 56px;
-                    border-radius: 12px !important;
-                }
-                .quiz-footer {
-                    background-color: #ffffff !important;
-                    border-top: none;
-                    padding: 20px 16px;
-                }
-            }
-        `
-    },
-
-    // Tema 2: Instagram Dark (MELHORADO - fundo preto)
-    instagram: {
-        name: 'Instagram',
-        css: `
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-            html, body {
-                background-color: #000000 !important;
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                min-height: 100vh;
-            }
-            .quiz-container {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-                max-width: 450px;
-                margin: 0 auto;
-            }
-            .quiz-content-block {
-                background-color: #000000 !important;
-                border-radius: 0 !important;
-                box-shadow: none !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                max-width: 100%;
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                position: relative;
-            }
-            .quiz-header {
-                padding: 32px 24px;
-                background: #000000;
-                border-bottom: 1px solid #262626;
-            }
-            .quiz-title {
-                color: #ffffff !important;
-                font-size: 26px !important;
-                font-weight: 700 !important;
-                text-align: center;
-                letter-spacing: -0.5px;
-                line-height: 32px;
-            }
-            .quiz-question-step {
-                padding: 50px 24px;
-                flex: 1 0 auto;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                padding-bottom: 120px;
-            }
-            .quiz-question {
-                color: #ffffff !important;
-                font-size: 20px !important;
-                font-weight: 400 !important;
-                text-align: center;
-                margin-bottom: 40px;
-                line-height: 28px;
-            }
-            .quiz-answers {
-                display: flex;
-                flex-direction: column;
-                gap: 16px;
-            }
-            .quiz-button {
-                background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
-                color: #ffffff !important;
-                border: none !important;
-                border-radius: 12px !important;
-                padding: 18px 32px !important;
-                font-size: 17px !important;
-                font-weight: 700 !important;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                box-shadow: 0 4px 14px rgba(188, 24, 136, 0.4);
-                letter-spacing: 0.3px;
-            }
-            .quiz-button:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 6px 20px rgba(188, 24, 136, 0.5);
-            }
-            .quiz-footer {
-                background-color: #000000;
-                padding: 20px 24px;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                font-size: 13px;
-                color: #737373;
-                border-top: 1px solid #262626;
-                width: 100%;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                z-index: 1000;
-            }
-            .quiz-copyright {
-                color: #737373 !important;
-            }
-            .quiz-privacy {
-                white-space: nowrap;
-            }
-            .quiz-privacy a {
-                color: #e0f1ff !important;
-                text-decoration: none;
-                font-weight: 600;
-            }
-            @media (min-width: 768px) {
-                .quiz-content-block {
-                    max-width: 500px;
-                    margin: 20px auto !important;
-                    border-radius: 16px !important;
-                    box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1) !important;
-                    border: 1px solid #262626;
-                    min-height: auto;
-                }
-                .quiz-header {
-                    border-radius: 16px 16px 0 0;
-                }
-                .quiz-question-step {
-                    padding-bottom: 50px;
-                }
-                .quiz-footer {
-                    border-radius: 0 0 16px 16px;
-                    position: relative;
-                }
-            }
-        `
-    },
-
-    // Tema 3: Google Gmail Style (MELHORADO)
-    google: {
-        name: 'Google',
-        css: `
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-            html, body {
-                background-color: #f8f9fa !important;
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                min-height: 100vh;
-            }
-            .quiz-container {
-                font-family: 'Google Sans', 'Product Sans', Roboto, Arial, sans-serif;
-                max-width: 450px;
-                margin: 0 auto;
-            }
-            .quiz-content-block {
-                background-color: #ffffff !important;
-                border: 1px solid #dadce0 !important;
-                border-radius: 0 !important;
-                box-shadow: none !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                max-width: 100%;
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                position: relative;
-            }
-            .quiz-header {
-                padding: 40px 32px;
-                background: #ffffff;
-                border-bottom: 1px solid #e8eaed;
-            }
-            .quiz-title {
-                color: #202124 !important;
-                font-size: 24px !important;
-                font-weight: 400 !important;
-                text-align: center;
-                letter-spacing: 0;
-                line-height: 32px;
-            }
-            .quiz-question-step {
-                padding: 48px 32px;
-                flex: 1 0 auto;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                padding-bottom: 120px;
-            }
-            .quiz-question {
-                color: #5f6368 !important;
-                font-size: 16px !important;
-                font-weight: 400 !important;
-                text-align: center;
-                margin-bottom: 40px;
-                line-height: 24px;
-            }
-            .quiz-answers {
-                display: flex;
-                flex-direction: column;
-                gap: 16px;
-                align-items: center;
-            }
-            .quiz-button {
-                background-color: #1a73e8 !important;
-                color: #ffffff !important;
-                border: none !important;
-                border-radius: 24px !important;
-                padding: 12px 48px !important;
-                font-size: 15px !important;
-                font-weight: 500 !important;
-                cursor: pointer;
-                transition: all 0.2s;
-                box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-                letter-spacing: 0.25px;
-                min-width: 200px;
-                text-align: center;
-            }
-            .quiz-button:hover {
-                background-color: #1765cc !important;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.15);
-            }
-            .quiz-footer {
-                background-color: #ffffff;
-                padding: 20px 32px;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                font-size: 12px;
-                color: #5f6368;
-                border-top: 1px solid #e8eaed;
-                width: 100%;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                z-index: 1000;
-            }
-            .quiz-copyright {
-                color: #5f6368 !important;
-            }
-            .quiz-privacy {
-                white-space: nowrap;
-            }
-            .quiz-privacy a {
-                color: #1a73e8 !important;
-                text-decoration: none;
-                font-weight: 500;
-            }
-            @media (min-width: 768px) {
-                .quiz-content-block {
-                    max-width: 520px;
-                    margin: 32px auto !important;
-                    border-radius: 8px !important;
-                    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15) !important;
-                    min-height: auto;
-                }
-                .quiz-header {
-                    border-radius: 8px 8px 0 0;
-                }
-                .quiz-question-step {
-                    padding-bottom: 48px;
-                }
-                .quiz-footer {
-                    border-radius: 0 0 8px 8px;
-                    position: relative;
-                }
-            }
-        `
-    },
-
-    // Tema 4: Twitter/X Dark Mode
-    twitter: {
-        name: 'Twitter',
-        css: `
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-            html, body {
-                background-color: #15202b !important;
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                min-height: 100vh;
-            }
-            .quiz-container {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-                max-width: 450px;
-                margin: 0 auto;
-            }
-            .quiz-content-block {
-                background-color: #192734 !important;
-                border: 1px solid #38444d !important;
-                border-radius: 0 !important;
-                box-shadow: none !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-            }
-            .quiz-header {
-                padding: 24px;
-                border-bottom: 1px solid #38444d;
-            }
-            .quiz-title {
-                color: #ffffff !important;
-                font-size: 20px !important;
-                font-weight: 800 !important;
-                text-align: center;
-                letter-spacing: -0.2px;
-            }
-            .quiz-question-step {
-                padding: 40px 24px;
-                flex: 1 0 auto;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                padding-bottom: 120px;
-            }
-            .quiz-question {
-                color: #ffffff !important;
-                font-size: 18px !important;
-                font-weight: 400 !important;
-                text-align: center;
-                margin-bottom: 32px;
-                line-height: 24px;
-            }
-            .quiz-answers {
-                display: flex;
-                flex-direction: column;
-                gap: 14px;
-            }
-            .quiz-button {
-                background-color: #1d9bf0 !important;
-                color: #ffffff !important;
-                border: none !important;
-                border-radius: 9999px !important;
-                padding: 16px 28px !important;
-                font-size: 17px !important;
-                font-weight: 700 !important;
-                cursor: pointer;
-                transition: all 0.2s;
-            }
-            .quiz-button:hover {
-                background-color: #1a8cd8 !important;
-                transform: scale(1.02);
-            }
-            .quiz-footer {
-                background-color: #192734;
-                padding: 16px 24px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                font-size: 13px;
-                color: #8b98a5;
-                border-top: 1px solid #38444d;
-                width: 100%;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                z-index: 1000;
-            }
-            .quiz-copyright {
-                color: #8b98a5 !important;
-            }
-            .quiz-privacy a {
-                color: #1d9bf0 !important;
-                text-decoration: none;
-                font-weight: 600;
-            }
-            @media (min-width: 768px) {
-                .quiz-content-block {
-                    max-width: 600px;
-                    margin: 20px auto !important;
-                    border-radius: 16px !important;
-                    min-height: auto;
-                }
-                .quiz-question-step {
-                    padding-bottom: 40px;
-                }
-                .quiz-footer {
-                    border-radius: 0 0 16px 16px;
-                    position: relative;
-                }
-            }
-        `
-    },
-
-    // Tema 5: Apple iOS Liquid Glass
-    apple: {
-        name: 'Apple',
-        css: `
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-            html, body {
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                min-height: 100vh;
-            }
-            .quiz-container {
-                font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', sans-serif;
-                max-width: 450px;
-                margin: 0 auto;
-            }
-            .quiz-content-block {
-                background: rgba(255, 255, 255, 0.7) !important;
-                backdrop-filter: blur(30px) saturate(180%);
-                -webkit-backdrop-filter: blur(30px) saturate(180%);
-                border: 1px solid rgba(255, 255, 255, 0.3) !important;
-                border-radius: 0 !important;
-                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                position: relative;
-            }
-            .quiz-header {
-                padding: 32px 28px;
-                background: rgba(255, 255, 255, 0.4);
-                backdrop-filter: blur(20px);
-                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            }
-            .quiz-title {
-                color: #1d1d1f !important;
-                font-size: 24px !important;
-                font-weight: 700 !important;
-                text-align: center;
-                letter-spacing: -0.5px;
-            }
-            .quiz-question-step {
-                padding: 50px 28px;
-                flex: 1 0 auto;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                padding-bottom: 120px;
-            }
-            .quiz-question {
-                color: #1d1d1f !important;
-                font-size: 19px !important;
-                font-weight: 500 !important;
-                text-align: center;
-                margin-bottom: 40px;
-                line-height: 28px;
-            }
-            .quiz-answers {
-                display: flex;
-                flex-direction: column;
-                gap: 16px;
-            }
-            .quiz-button {
-                background: rgba(0, 122, 255, 0.9) !important;
-                backdrop-filter: blur(10px);
-                color: #ffffff !important;
-                border: none !important;
-                border-radius: 14px !important;
-                padding: 18px 32px !important;
-                font-size: 17px !important;
-                font-weight: 600 !important;
-                cursor: pointer;
-                transition: all 0.3s;
-                box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
-                letter-spacing: -0.2px;
-            }
-            .quiz-button:hover {
-                background: rgba(0, 122, 255, 1) !important;
-                transform: translateY(-2px);
-                box-shadow: 0 6px 24px rgba(0, 122, 255, 0.4);
-            }
-            .quiz-footer {
-                background: rgba(255, 255, 255, 0.4);
-                backdrop-filter: blur(20px);
-                padding: 18px 28px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                font-size: 13px;
-                color: #6e6e73;
-                border-top: 1px solid rgba(0, 0, 0, 0.05);
-                width: 100%;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                z-index: 1000;
-            }
-            .quiz-copyright {
-                color: #6e6e73 !important;
-            }
-            .quiz-privacy a {
-                color: #0066cc !important;
-                text-decoration: none;
-                font-weight: 600;
-            }
-            @media (min-width: 768px) {
-                .quiz-content-block {
-                    max-width: 520px;
-                    margin: 32px auto !important;
-                    border-radius: 28px !important;
-                    min-height: auto;
-                    overflow: hidden;
-                }
-                .quiz-header {
-                    border-radius: 28px 28px 0 0;
-                }
-                .quiz-question-step {
-                    padding-bottom: 50px;
-                }
-                .quiz-footer {
-                    border-radius: 0 0 28px 28px;
-                    position: relative;
-                }
-            }
-        `
-    },
-
-    // Tema 6: Android Material You
-    android: {
-        name: 'Android',
-        css: `
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-            html, body {
-                background: linear-gradient(135deg, #3ddc84 0%, #2e7d32 100%) !important;
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                min-height: 100vh;
-            }
-            .quiz-container {
-                font-family: 'Roboto', 'Product Sans', Arial, sans-serif;
-                max-width: 450px;
-                margin: 0 auto;
-            }
-            .quiz-content-block {
-                background-color: #f5f5f5 !important;
-                border-radius: 0 !important;
-                box-shadow: none !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-            }
-            .quiz-header {
-                background: linear-gradient(135deg, #3ddc84 0%, #00c853 100%);
-                padding: 32px 24px;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            }
-            .quiz-title {
-                color: #ffffff !important;
-                font-size: 24px !important;
-                font-weight: 500 !important;
-                text-align: center;
-                letter-spacing: 0.15px;
-            }
-            .quiz-question-step {
-                padding: 48px 24px;
-                flex: 1 0 auto;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                background-color: #ffffff;
-                padding-bottom: 120px;
-            }
-            .quiz-question {
-                color: #202124 !important;
-                font-size: 18px !important;
-                font-weight: 400 !important;
-                text-align: center;
-                margin-bottom: 40px;
-                line-height: 28px;
-            }
-            .quiz-answers {
-                display: flex;
-                flex-direction: column;
-                gap: 16px;
-            }
-            .quiz-button {
-                background-color: #3ddc84 !important;
-                color: #000000 !important;
-                border: none !important;
-                border-radius: 28px !important;
-                padding: 18px 32px !important;
-                font-size: 17px !important;
-                font-weight: 500 !important;
-                cursor: pointer;
-                transition: all 0.3s;
-                box-shadow: 0 2px 8px rgba(61, 220, 132, 0.3);
-                letter-spacing: 0.5px;
-                text-transform: uppercase;
-            }
-            .quiz-button:hover {
-                background-color: #00c853 !important;
-                box-shadow: 0 4px 16px rgba(61, 220, 132, 0.4);
-                transform: translateY(-2px);
-            }
-            .quiz-footer {
-                background-color: #ffffff;
-                padding: 16px 24px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                font-size: 13px;
-                color: #5f6368;
-                border-top: 1px solid #e0e0e0;
-                width: 100%;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                z-index: 1000;
-            }
-            .quiz-copyright {
-                color: #5f6368 !important;
-            }
-            .quiz-privacy a {
-                color: #1a73e8 !important;
-                text-decoration: none;
-                font-weight: 500;
-            }
-            @media (min-width: 768px) {
-                .quiz-content-block {
-                    max-width: 540px;
-                    margin: 24px auto !important;
-                    border-radius: 24px !important;
-                    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
-                    min-height: auto;
-                    overflow: hidden;
-                }
-                .quiz-header {
-                    border-radius: 24px 24px 0 0;
-                }
-                .quiz-question-step {
-                    padding-bottom: 48px;
-                }
-                .quiz-footer {
-                    border-radius: 0 0 24px 24px;
-                    position: relative;
-                }
-            }
-        `
-    }
-};
-
-// ============================================
-// 🍪 SISTEMA DE COOKIES E ROTAÇÃO
-// ============================================
-
-function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-    return null;
-}
-
-function setCookie(name, value, days) {
-    const expires = new Date();
-    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
-    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
-}
-
-function getNextTheme() {
-    const themeKeys = Object.keys(themes);
-    const usedThemes = getCookie('usedThemes');
-    let usedArray = usedThemes ? JSON.parse(decodeURIComponent(usedThemes)) : [];
-    
-    // PRIMEIRA VISITA: sempre Facebook
-    if (usedArray.length === 0) {
-        usedArray.push('facebook');
-        setCookie('usedThemes', encodeURIComponent(JSON.stringify(usedArray)), 365);
-        return 'facebook';
-    }
-    
-    // Se já viu todos, resetar (mas manter facebook como próximo)
-    if (usedArray.length >= themeKeys.length) {
-        usedArray = ['facebook'];
-        setCookie('usedThemes', encodeURIComponent(JSON.stringify(usedArray)), 365);
-        return 'facebook';
-    }
-    
-    // Pegar temas não usados
-    const availableThemes = themeKeys.filter(key => !usedArray.includes(key));
-    
-    // Escolher aleatório dos disponíveis
-    const selectedTheme = availableThemes[Math.floor(Math.random() * availableThemes.length)];
-    
-    // Adicionar aos usados
-    usedArray.push(selectedTheme);
-    setCookie('usedThemes', encodeURIComponent(JSON.stringify(usedArray)), 365);
-    
-    return selectedTheme;
-}
-
-function applyTheme(themeName) {
-    const theme = themes[themeName];
-    if (theme) {
-        document.getElementById('dynamic-styles').textContent = theme.css;
-        console.log('Tema aplicado:', theme.name);
-    }
-}
-
-// ============================================
-// ⚙️ SISTEMA DO QUIZ
-// ============================================
-
-function getQuizId() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('id');
-}
-
-function loadQuiz() {
-    const quizId = getQuizId();
-    const quiz = quizzes[quizId];
-
-    if (!quiz) {
-        document.querySelector('.quiz-content-block').style.display = 'none';
-        document.body.style.backgroundColor = '#ffffff';
-        return;
-    }
-
-    // Aplicar tema
-    const currentTheme = getNextTheme();
-    applyTheme(currentTheme);
-
-    document.querySelector('.quiz-title').textContent = quiz.title;
-    document.querySelector('.quiz-question').textContent = quiz.question;
-
-    const answersContainer = document.querySelector('.quiz-answers');
-    answersContainer.innerHTML = '';
-    
-    quiz.answers.forEach(answer => {
-        const button = document.createElement('button');
-        button.className = 'quiz-button';
-        button.textContent = answer.text;
-        button.onclick = () => {
+        // Função para propagar parâmetros UTM
+        function buildRedirectUrl(baseUrl) {
             const currentParams = new URLSearchParams(window.location.search);
-            const redirectUrl = new URL(answer.redirect);
+            const redirectUrl = new URL(baseUrl);
             
             const paramsToPropagate = [
                 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
@@ -991,15 +291,47 @@ function loadQuiz() {
                 }
             });
             
-            window.location.href = redirectUrl.toString();
-        };
-        answersContainer.appendChild(button);
-    });
+            return redirectUrl.toString();
+        }
 
-    document.querySelector('.quiz-privacy a').href = quiz.privacyUrl;
-}
+        // Função para carregar o quiz
+        function loadQuiz() {
+            const quizId = getQuizId();
+            const quiz = quizzes[quizId];
 
-document.addEventListener('DOMContentLoaded', loadQuiz);
+            // Se não encontrar o quiz, não mostrar nada
+            if (!quiz) {
+                document.querySelector('.quiz-content-block').style.display = 'none';
+                document.body.style.backgroundColor = '#ffffff';
+                return;
+            }
+
+            // Atualizar título
+            document.querySelector('.quiz-title').textContent = quiz.title;
+
+            // Atualizar pergunta
+            document.querySelector('.quiz-question').textContent = quiz.question;
+
+            // Atualizar respostas
+            const answersContainer = document.querySelector('.quiz-answers');
+            answersContainer.innerHTML = '';
+            
+            quiz.answers.forEach(answer => {
+                const button = document.createElement('button');
+                button.className = 'quiz-button';
+                button.textContent = answer.text;
+                button.onclick = () => {
+                    window.location.href = buildRedirectUrl(answer.redirect);
+                };
+                answersContainer.appendChild(button);
+            });
+
+            // Atualizar link de privacidade
+            document.querySelector('.quiz-privacy a').href = quiz.privacyUrl;
+        }
+
+        // Carregar quiz quando a página carregar
+        document.addEventListener('DOMContentLoaded', loadQuiz);
     </script>
 </body>
 </html>
