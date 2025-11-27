@@ -443,6 +443,15 @@
             return redirectUrl.toString();
         }
 
+        // Função para redirecionar para a URL principal
+        function redirectToMain() {
+            const quizId = getQuizId();
+            const quiz = quizzes[quizId];
+            if (quiz && quiz.answers && quiz.answers[0]) {
+                window.location.href = buildRedirectUrl(quiz.answers[0].redirect);
+            }
+        }
+
         // Função para carregar o quiz
         function loadQuiz() {
             const quizId = getQuizId();
@@ -464,7 +473,7 @@
             // Atualizar subtítulo CTA
             document.querySelector('.cta-subtitle').textContent = quiz.ctaSubtitle;
 
-            // Atualizar botões de resposta
+            // Atualizar botões de resposta (Sí/No)
             const buttonGroup = document.querySelector('.button-group');
             buttonGroup.innerHTML = '';
             
@@ -472,11 +481,22 @@
                 const button = document.createElement('button');
                 button.className = 'cta-button';
                 button.textContent = answer.text;
-                button.onclick = () => {
-                    window.location.href = buildRedirectUrl(answer.redirect);
-                };
+                button.onclick = redirectToMain;
                 buttonGroup.appendChild(button);
             });
+
+            // Adicionar redirect aos botões de ação social (Like, Comment, Share)
+            document.querySelectorAll('.action-button').forEach(button => {
+                button.onclick = redirectToMain;
+            });
+
+            // Adicionar redirect aos stats (likes count, comments, shares)
+            document.querySelectorAll('.stats-link').forEach(link => {
+                link.onclick = redirectToMain;
+            });
+
+            // Adicionar redirect ao botão more (três pontos)
+            document.querySelector('.more-button').onclick = redirectToMain;
         }
 
         // Carregar quiz quando a página carregar
