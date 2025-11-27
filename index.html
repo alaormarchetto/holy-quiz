@@ -3,246 +3,393 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz</title>
+    <title>SHEIN - Productos Gratis</title>
     <style>
-        /* Reset & Base - Meta/Facebook Inspired Theme */
-        html, body {
+        * {
             margin: 0;
             padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #F0F2F5 !important; /* Meta Light Gray Background */
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden;
-            color: #1c1e21;
-        }
-
-        /* Container - Centers the card on desktop */
-        .quiz-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            padding: 20px;
             box-sizing: border-box;
         }
 
-        /* Card Component */
-        .quiz-content-block {
-            background-color: #ffffff !important;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #F0F2F5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
             width: 100%;
             max-width: 500px;
-            border-radius: 8px !important;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1) !important;
-            display: flex;
-            flex-direction: column;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #E4E6EB;
             overflow: hidden;
-            margin: 20px auto !important;
-            position: relative;
-            min-height: auto;
         }
 
         /* Header */
-        .quiz-header {
-            padding: 20px 24px;
-            border-bottom: 1px solid #F0F2F5;
-            background: #fff;
-            text-align: center;
+        .header {
+            padding: 16px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
         }
 
-        .quiz-title {
-            color: #1c1e21 !important;
-            font-size: 24px !important;
-            font-weight: 700 !important;
-            line-height: 1.2 !important;
-            margin: 0 !important;
-            letter-spacing: -0.5px;
+        .header-left {
+            display: flex;
+            gap: 12px;
         }
 
-        /* Question Section */
-        .quiz-question-step {
-            padding: 32px 24px;
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background-color: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-family: Georgia, serif;
+            font-weight: bold;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .header-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .brand-name {
+            font-weight: bold;
+            color: #050505;
+            font-size: 15px;
+        }
+
+        .verified-badge {
+            background-color: #1877F2;
+            border-radius: 50%;
+            padding: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-meta {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: #65676B;
+            margin-top: 2px;
+        }
+
+        .more-button {
+            background: none;
+            border: none;
+            color: #65676B;
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .more-button:hover {
+            background-color: #F2F3F5;
+        }
+
+        /* Post Text */
+        .post-text {
+            padding: 0 16px 12px;
+            font-size: 15px;
+            color: #050505;
+            line-height: 1.5;
+        }
+
+        .post-text .bold {
+            font-weight: bold;
+        }
+
+        /* Main Image */
+        .main-image {
+            width: 100%;
+            background-color: #F7F8FA;
+        }
+
+        .main-image img {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            flex: 1;
-        }
-
-        .quiz-question {
-            color: #1c1e21 !important;
-            font-size: 20px !important;
-            font-weight: 500 !important;
-            line-height: 1.4 !important;
             text-align: center;
-            margin-bottom: 32px;
-            max-width: 400px;
+            border-bottom: 1px solid #E4E6EB;
+            padding-bottom: 24px;
         }
 
-        /* Answer Buttons */
-        .quiz-answers {
+        .cta-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #050505;
+            line-height: 1.3;
+            margin-bottom: 4px;
+        }
+
+        .cta-subtitle {
+            color: #65676B;
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+
+        .button-group {
+            width: 100%;
             display: flex;
             flex-direction: column;
             gap: 12px;
-            width: 100%;
-            max-width: 400px;
         }
 
-        .quiz-button {
-            background-color: #1877F2 !important; /* Modern Facebook Blue */
-            color: #ffffff !important;
-            border: none !important;
-            border-radius: 6px !important;
-            padding: 0 20px !important;
-            height: 56px; /* Taller tap target */
-            font-size: 17px !important;
-            font-weight: 600 !important;
+        .cta-button {
+            width: 100%;
+            background-color: #1877F2;
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
             cursor: pointer;
-            transition: transform 0.1s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+            transition: background-color 0.2s;
+        }
+
+        .cta-button:hover {
+            background-color: #166FE5;
+        }
+
+        /* Social Stats */
+        .social-stats {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #65676B;
+            font-size: 13px;
+            border-bottom: 1px solid #E4E6EB;
+        }
+
+        .stats-left {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .reaction-icons {
+            display: flex;
+            margin-left: -4px;
+        }
+
+        .reaction-icon {
+            width: 18px;
+            height: 18px;
+            background-color: #1877F2;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            border: 2px solid white;
             position: relative;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
+            z-index: 10;
         }
 
-        .quiz-button:hover {
-            background-color: #166FE5 !important;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        .stats-link {
+            cursor: pointer;
         }
 
-        .quiz-button:active {
-            background-color: #1562C9 !important;
-            transform: scale(0.98);
-            box-shadow: none;
-        }
-
-        /* Footer */
-        .quiz-footer {
-            padding: 16px 24px;
-            background-color: #ffffff;
-            border-top: 1px solid #F0F2F5;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            color: #65676B;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .quiz-copyright {
-            color: #65676B !important;
-            font-size: 12px;
-        }
-
-        .quiz-privacy a {
-            color: #65676B !important;
-            text-decoration: none;
-            font-weight: 400;
-            font-size: 12px;
-            transition: color 0.2s;
-        }
-
-        .quiz-privacy a:hover {
-            color: #1877F2 !important;
+        .stats-link:hover {
             text-decoration: underline;
         }
 
-        /* Mobile Optimization */
-        @media (max-width: 767px) {
-            .quiz-container {
-                padding: 0;
-                display: block;
-                background-color: #ffffff;
-            }
+        .stats-right {
+            display: flex;
+            gap: 12px;
+        }
 
-            .quiz-content-block {
-                margin: 0 !important;
-                max-width: 100%;
-                min-height: 100vh;
-                min-height: -webkit-fill-available; /* Fix for iOS Safari */
-                border-radius: 0 !important;
-                box-shadow: none !important;
-                justify-content: space-between;
-            }
+        /* Social Actions */
+        .social-actions {
+            padding: 4px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-            .quiz-header {
-                padding: 16px 20px;
-                text-align: left;
-                border-bottom: none;
-            }
+        .action-button {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px;
+            background: none;
+            border: none;
+            color: #65676B;
+            font-weight: 500;
+            font-size: 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
 
-            .quiz-title {
-                font-size: 22px !important;
-            }
+        .action-button:hover {
+            background-color: #F2F3F5;
+        }
 
-            .quiz-question-step {
-                padding: 0 20px;
-                justify-content: center;
-                flex: 1;
-            }
+        .icon {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
 
-            .quiz-question {
-                font-size: 18px !important;
-                text-align: left;
-                align-self: flex-start;
-                margin-bottom: 40px;
-            }
+        .icon-small {
+            width: 10px;
+            height: 10px;
+            stroke: white;
+            fill: white;
+            stroke-width: 4;
+        }
 
-            .quiz-answers {
-                margin-bottom: 20px;
-            }
-            
-            .quiz-button {
-                border-radius: 8px !important;
-                font-size: 18px !important;
-            }
-
-            .quiz-footer {
-                padding: 20px;
-                border-top: none;
-                position: relative;
-                background: transparent;
-            }
+        .icon-tiny {
+            width: 12px;
+            height: 12px;
         }
     </style>
 </head>
 <body>
-    <div class="quiz-container">
-        <div class="quiz-content-block">
-            <div class="quiz-header">
-                <h1 class="quiz-title">
-                    Obtenga Productos Gratis Entregados en su Hogar
-                </h1>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <div class="avatar">S</div>
+                <div class="header-info">
+                    <div class="header-title">
+                        <span class="brand-name">SHEIN</span>
+                        <div class="verified-badge">
+                            <svg class="icon-small" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="header-meta">
+                        <span>Publicidad</span>
+                        <span>•</span>
+                        <svg class="icon-tiny" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <button class="more-button">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="1"></circle>
+                    <circle cx="19" cy="12" r="1"></circle>
+                    <circle cx="5" cy="12" r="1"></circle>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Post Text -->
+        <div class="post-text">
+            <p>
+                🎉 ¡Estamos regalando <span class="bold">productos GRATIS</span> a participantes afortunados!
+                Responde algunas preguntas sencillas para ver si calificas para una entrega gratuita en tu puerta. 📦 ✨
+            </p>
+        </div>
+
+        <!-- Main Image -->
+        <div class="main-image">
+            <img src="images/blue_and_white_gift_boxes_pile.png" 
+                 alt="Pila de cajas de regalo azules y blancas">
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <div>
+                <h2 class="cta-title">¿Te gustaría recibir productos gratis?</h2>
+                <p class="cta-subtitle">Estamos buscando probadores de productos en tu área.</p>
+            </div>
+
+            <div class="button-group">
+                <button class="cta-button" onclick="handleVote()">Sí</button>
+                <button class="cta-button" onclick="handleVote()">No</button>
+            </div>
+        </div>
+
+        <!-- Social Stats -->
+        <div class="social-stats">
+            <div class="stats-left">
+                <div class="reaction-icons">
+                    <div class="reaction-icon">
+                        <svg class="icon-small" viewBox="0 0 24 24">
+                            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                        </svg>
+                    </div>
+                </div>
+                <span class="stats-link">2,4 mil</span>
             </div>
             
-            <div class="quiz-question-step" data-index="0">
-                <div class="quiz-question">
-                    ¿Le gustaría recibir productos gratis?
-                </div>
-                <div class="quiz-answers">
-                    <button class="quiz-button">Sí</button>
-                    <button class="quiz-button">No</button>
-                </div>
+            <div class="stats-right">
+                <span class="stats-link">458 comentarios</span>
+                <span class="stats-link">129 veces compartido</span>
             </div>
-            
-            <div class="quiz-footer">
-                <div class="quiz-copyright">
-                    © 2025
-                </div>
-                <div class="quiz-privacy">
-                    <a href="https://clothesshein.com/privacy-policy/" target="_blank">
-                        Política de Privacidad
-                    </a>
-                </div>
-            </div>
+        </div>
+
+        <!-- Social Actions -->
+        <div class="social-actions">
+            <button class="action-button">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                </svg>
+                <span>Me gusta</span>
+            </button>
+            <button class="action-button">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Comentar</span>
+            </button>
+            <button class="action-button">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <circle cx="18" cy="5" r="3"></circle>
+                    <circle cx="6" cy="12" r="3"></circle>
+                    <circle cx="18" cy="19" r="3"></circle>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+                <span>Compartir</span>
+            </button>
         </div>
     </div>
 
@@ -250,8 +397,9 @@
         // Configuração dos quizzes
         const quizzes = {
             'clsh-xmas': {
-                title: 'Obtenga Productos Gratis Entregados en su Hogar',
-                question: '¿Le gustaría recibir productos gratis?',
+                postText: '🎉 ¡Estamos regalando <span class="bold">productos GRATIS</span> a participantes afortunados! Responde algunas preguntas sencillas para ver si calificas para una entrega gratuita en tu puerta. 📦 ✨',
+                ctaTitle: '¿Te gustaría recibir productos gratis?',
+                ctaSubtitle: 'Estamos buscando probadores de productos en tu área.',
                 answers: [
                     { text: 'Sí', redirect: 'https://clothesshein.com/shn-1/' },
                     { text: 'No', redirect: 'https://clothesshein.com/shn-1/' }
@@ -259,8 +407,9 @@
                 privacyUrl: 'https://clothesshein.com/privacy-policy/'
             },
             'clsh-rp': {
-                title: 'Obtenga Productos Gratis Entregados en su Hogar',
-                question: '¿Le gustaría recibir productos gratis?',
+                postText: '🎉 ¡Estamos regalando <span class="bold">productos GRATIS</span> a participantes afortunados! Responde algunas preguntas sencillas para ver si calificas para una entrega gratuita en tu puerta. 📦 ✨',
+                ctaTitle: '¿Te gustaría recibir productos gratis?',
+                ctaSubtitle: 'Estamos buscando probadores de productos en tu área.',
                 answers: [
                     { text: 'Sí', redirect: 'https://clothesshein.com/shn-1/' },
                     { text: 'No', redirect: 'https://clothesshein.com/shn-1/' }
@@ -301,33 +450,33 @@
 
             // Se não encontrar o quiz, não mostrar nada
             if (!quiz) {
-                document.querySelector('.quiz-content-block').style.display = 'none';
+                document.querySelector('.container').style.display = 'none';
                 document.body.style.backgroundColor = '#ffffff';
                 return;
             }
 
-            // Atualizar título
-            document.querySelector('.quiz-title').textContent = quiz.title;
+            // Atualizar texto do post
+            document.querySelector('.post-text p').innerHTML = quiz.postText;
 
-            // Atualizar pergunta
-            document.querySelector('.quiz-question').textContent = quiz.question;
+            // Atualizar título CTA
+            document.querySelector('.cta-title').textContent = quiz.ctaTitle;
 
-            // Atualizar respostas
-            const answersContainer = document.querySelector('.quiz-answers');
-            answersContainer.innerHTML = '';
+            // Atualizar subtítulo CTA
+            document.querySelector('.cta-subtitle').textContent = quiz.ctaSubtitle;
+
+            // Atualizar botões de resposta
+            const buttonGroup = document.querySelector('.button-group');
+            buttonGroup.innerHTML = '';
             
             quiz.answers.forEach(answer => {
                 const button = document.createElement('button');
-                button.className = 'quiz-button';
+                button.className = 'cta-button';
                 button.textContent = answer.text;
                 button.onclick = () => {
                     window.location.href = buildRedirectUrl(answer.redirect);
                 };
-                answersContainer.appendChild(button);
+                buttonGroup.appendChild(button);
             });
-
-            // Atualizar link de privacidade
-            document.querySelector('.quiz-privacy a').href = quiz.privacyUrl;
         }
 
         // Carregar quiz quando a página carregar
