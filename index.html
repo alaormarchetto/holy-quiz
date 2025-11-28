@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHEIN - Productos Gratis</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
+    
+    <!-- ==================== FACEBOOK STYLES ==================== -->
+    <style id="facebook-styles">
+        /* Facebook Reset e configurações */
+        body.facebook-mode {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: #F0F2F5;
             min-height: 100vh;
@@ -22,12 +19,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Instagram background */
-        body.instagram-mode {
-            background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCAF45 100%);
-        }
-
-        .container {
+        body.facebook-mode .fb-container {
             width: 100%;
             max-width: 500px;
             background-color: white;
@@ -37,37 +29,21 @@
             overflow: hidden;
         }
 
-        /* Instagram container */
-        body.instagram-mode .container {
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            border: 1px solid #DBDBDB;
-        }
-
-        /* Header */
-        .header {
+        /* Facebook Header */
+        body.facebook-mode .fb-header {
             padding: 16px;
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
         }
 
-        /* Instagram header */
-        body.instagram-mode .header {
-            padding: 14px 16px;
-            border-bottom: 1px solid #EFEFEF;
-        }
-
-        .header-left {
+        body.facebook-mode .fb-header-left {
             display: flex;
             gap: 12px;
+            cursor: pointer;
         }
 
-        body.instagram-mode .header-left {
-            gap: 10px;
-        }
-
-        .avatar {
+        body.facebook-mode .fb-avatar {
             width: 40px;
             height: 40px;
             background-color: black;
@@ -82,53 +58,24 @@
             flex-shrink: 0;
         }
 
-        /* Instagram avatar */
-        body.instagram-mode .avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            font-size: 16px;
-            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
-            padding: 2px;
-        }
-
-        body.instagram-mode .avatar-inner {
-            width: 100%;
-            height: 100%;
-            background-color: black;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 14px;
-            font-family: Georgia, serif;
-            font-weight: bold;
-        }
-
-        .header-info {
+        body.facebook-mode .fb-header-info {
             display: flex;
             flex-direction: column;
         }
 
-        .header-title {
+        body.facebook-mode .fb-header-title {
             display: flex;
             align-items: center;
             gap: 4px;
         }
 
-        .brand-name {
+        body.facebook-mode .fb-brand-name {
             font-weight: bold;
             color: #050505;
             font-size: 15px;
         }
 
-        body.instagram-mode .brand-name {
-            font-size: 14px;
-            color: #262626;
-        }
-
-        .verified-badge {
+        body.facebook-mode .fb-verified-badge {
             background-color: #1877F2;
             border-radius: 50%;
             padding: 2px;
@@ -137,11 +84,7 @@
             justify-content: center;
         }
 
-        body.instagram-mode .verified-badge {
-            background-color: #3897F0;
-        }
-
-        .header-meta {
+        body.facebook-mode .fb-header-meta {
             display: flex;
             align-items: center;
             gap: 4px;
@@ -150,12 +93,7 @@
             margin-top: 2px;
         }
 
-        body.instagram-mode .header-meta {
-            color: #8E8E8E;
-            font-size: 12px;
-        }
-
-        .more-button {
+        body.facebook-mode .fb-more-button {
             background: none;
             border: none;
             color: #65676B;
@@ -165,56 +103,30 @@
             transition: background-color 0.2s;
         }
 
-        .more-button:hover {
+        body.facebook-mode .fb-more-button:hover {
             background-color: #F2F3F5;
         }
 
-        body.instagram-mode .more-button {
-            color: #262626;
-            padding: 4px;
-        }
-
-        body.instagram-mode .more-button:hover {
-            background-color: transparent;
-        }
-
-        /* Post Text */
-        .post-text {
+        /* Facebook Post Text */
+        body.facebook-mode .fb-post-text {
             padding: 0 16px 12px;
             font-size: 15px;
             color: #050505;
             line-height: 1.5;
         }
 
-        /* Instagram hides post text before image */
-        body.instagram-mode .post-text.before-image {
-            display: none;
-        }
-
-        body.instagram-mode .post-text {
-            padding: 12px 16px;
-            font-size: 14px;
-            color: #262626;
-            line-height: 1.5;
-            order: 3;
-        }
-
-        .post-text .bold {
+        body.facebook-mode .fb-post-text .bold {
             font-weight: bold;
         }
 
-        body.instagram-mode .post-text .username {
-            font-weight: 600;
-            color: #262626;
-        }
-
-        /* Main Image */
-        .main-image {
+        /* Facebook Main Image */
+        body.facebook-mode .fb-main-image {
             width: 100%;
             background-color: #F7F8FA;
+            cursor: pointer;
         }
 
-        .main-image img {
+        body.facebook-mode .fb-main-image img {
             width: 100%;
             height: auto;
             max-height: 400px;
@@ -222,16 +134,8 @@
             display: block;
         }
 
-        body.instagram-mode .main-image {
-            background-color: #FAFAFA;
-        }
-
-        body.instagram-mode .main-image img {
-            max-height: 500px;
-        }
-
-        /* CTA Section */
-        .cta-section {
+        /* Facebook CTA Section */
+        body.facebook-mode .fb-cta-section {
             padding: 16px;
             display: flex;
             flex-direction: column;
@@ -241,12 +145,7 @@
             padding-bottom: 24px;
         }
 
-        body.instagram-mode .cta-section {
-            border-bottom: 1px solid #EFEFEF;
-            padding: 16px;
-        }
-
-        .cta-title {
+        body.facebook-mode .fb-cta-title {
             font-size: 20px;
             font-weight: bold;
             color: #050505;
@@ -254,34 +153,20 @@
             margin-bottom: 4px;
         }
 
-        body.instagram-mode .cta-title {
-            font-size: 18px;
-            color: #262626;
-        }
-
-        .cta-subtitle {
+        body.facebook-mode .fb-cta-subtitle {
             color: #65676B;
             font-size: 15px;
             margin-bottom: 16px;
         }
 
-        body.instagram-mode .cta-subtitle {
-            color: #8E8E8E;
-            font-size: 14px;
-        }
-
-        .button-group {
+        body.facebook-mode .fb-button-group {
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
 
-        body.instagram-mode .button-group {
-            gap: 10px;
-        }
-
-        .cta-button {
+        body.facebook-mode .fb-cta-button {
             width: 100%;
             background-color: #1877F2;
             color: white;
@@ -294,24 +179,12 @@
             transition: background-color 0.2s;
         }
 
-        .cta-button:hover {
+        body.facebook-mode .fb-cta-button:hover {
             background-color: #166FE5;
         }
 
-        body.instagram-mode .cta-button {
-            background-color: #0095F6;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 12px;
-        }
-
-        body.instagram-mode .cta-button:hover {
-            background-color: #1877F2;
-        }
-
-        /* Social Stats - Facebook */
-        .social-stats {
+        /* Facebook Social Stats */
+        body.facebook-mode .fb-social-stats {
             padding: 12px 16px;
             display: flex;
             align-items: center;
@@ -321,71 +194,18 @@
             border-bottom: 1px solid #E4E6EB;
         }
 
-        /* Instagram Social Actions (replaces stats) */
-        body.instagram-mode .social-stats {
-            display: none;
-        }
-
-        .instagram-actions {
-            display: none;
-            padding: 12px 16px;
-            border-bottom: 1px solid #EFEFEF;
-        }
-
-        body.instagram-mode .instagram-actions {
-            display: block;
-        }
-
-        .instagram-actions-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .instagram-actions-left {
-            display: flex;
-            gap: 16px;
-        }
-
-        .instagram-action-btn {
-            background: none;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-        }
-
-        .instagram-action-btn svg {
-            width: 24px;
-            height: 24px;
-            stroke: #262626;
-            fill: none;
-            stroke-width: 2;
-        }
-
-        .instagram-action-btn.liked svg {
-            fill: #ED4956;
-            stroke: #ED4956;
-        }
-
-        .instagram-likes {
-            font-weight: 600;
-            font-size: 14px;
-            color: #262626;
-        }
-
-        .stats-left {
+        body.facebook-mode .fb-stats-left {
             display: flex;
             align-items: center;
             gap: 6px;
         }
 
-        .reaction-icons {
+        body.facebook-mode .fb-reaction-icons {
             display: flex;
             margin-left: -4px;
         }
 
-        .reaction-icon {
+        body.facebook-mode .fb-reaction-icon {
             width: 18px;
             height: 18px;
             background-color: #1877F2;
@@ -398,32 +218,28 @@
             z-index: 10;
         }
 
-        .stats-link {
+        body.facebook-mode .fb-stats-link {
             cursor: pointer;
         }
 
-        .stats-link:hover {
+        body.facebook-mode .fb-stats-link:hover {
             text-decoration: underline;
         }
 
-        .stats-right {
+        body.facebook-mode .fb-stats-right {
             display: flex;
             gap: 12px;
         }
 
-        /* Social Actions - Facebook */
-        .social-actions {
+        /* Facebook Social Actions */
+        body.facebook-mode .fb-social-actions {
             padding: 4px 8px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        body.instagram-mode .social-actions {
-            display: none;
-        }
-
-        .action-button {
+        body.facebook-mode .fb-action-button {
             flex: 1;
             display: flex;
             align-items: center;
@@ -440,11 +256,11 @@
             transition: background-color 0.2s;
         }
 
-        .action-button:hover {
+        body.facebook-mode .fb-action-button:hover {
             background-color: #F2F3F5;
         }
 
-        .icon {
+        body.facebook-mode .fb-icon {
             width: 20px;
             height: 20px;
             stroke: currentColor;
@@ -454,7 +270,7 @@
             stroke-linejoin: round;
         }
 
-        .icon-small {
+        body.facebook-mode .fb-icon-small {
             width: 10px;
             height: 10px;
             stroke: white;
@@ -462,57 +278,383 @@
             stroke-width: 4;
         }
 
-        .icon-tiny {
+        body.facebook-mode .fb-icon-tiny {
             width: 12px;
             height: 12px;
         }
+    </style>
 
-        /* Instagram Comments Preview */
-        .instagram-comments {
-            display: none;
-            padding: 0 16px 8px;
+    <!-- ==================== INSTAGRAM STYLES ==================== -->
+    <style id="instagram-styles">
+        /* Instagram Reset e configurações */
+        body.instagram-mode {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #000000;
+            color: #FAFAFA;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        body.instagram-mode .instagram-comments {
+        /* Instagram Container principal */
+        body.instagram-mode .ig-container {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 1rem 0;
+        }
+
+        @media (min-width: 768px) {
+            body.instagram-mode .ig-container {
+                padding: 2rem 0;
+            }
+        }
+
+        /* Instagram Card do post */
+        body.instagram-mode .ig-card {
+            width: 100%;
+            max-width: 470px;
+            background-color: #000000;
+            color: white;
+            overflow: hidden;
+        }
+
+        @media (min-width: 768px) {
+            body.instagram-mode .ig-card {
+                border: 1px solid #262626;
+                border-radius: 8px;
+            }
+        }
+
+        /* Instagram Header do card */
+        body.instagram-mode .ig-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            cursor: pointer;
+        }
+
+        body.instagram-mode .ig-header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        /* Instagram Avatar com gradiente */
+        body.instagram-mode .ig-avatar-wrapper {
+            position: relative;
+        }
+
+        body.instagram-mode .ig-avatar-gradient {
+            padding: 2px;
+            background: linear-gradient(to top right, #FFC107, #F44336, #9C27B0);
+            border-radius: 50%;
+        }
+
+        body.instagram-mode .ig-avatar-inner {
+            background-color: #000000;
+            padding: 2px;
+            border-radius: 50%;
+        }
+
+        body.instagram-mode .ig-avatar {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #262626;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000000;
+        }
+
+        body.instagram-mode .ig-avatar img,
+        body.instagram-mode .ig-avatar svg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Instagram Informações do usuário */
+        body.instagram-mode .ig-user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        body.instagram-mode .ig-username-row {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        body.instagram-mode .ig-username {
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        body.instagram-mode .ig-verified-badge {
+            background-color: #3B82F6;
+            border-radius: 50%;
+            width: 12px;
+            height: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body.instagram-mode .ig-verified-badge svg {
+            color: white;
+        }
+
+        body.instagram-mode .ig-sponsored {
+            font-size: 0.75rem;
+            color: #A8A8A8;
+        }
+
+        /* Instagram Botão de mais opções */
+        body.instagram-mode .ig-more-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+        }
+
+        body.instagram-mode .ig-more-btn:hover {
+            background-color: #171717;
+            border-radius: 4px;
+        }
+
+        /* Instagram Seção de enquete/CTA */
+        body.instagram-mode .ig-survey-section {
+            background-color: #121212;
+            padding: 1rem;
+            border-top: 1px solid #262626;
+        }
+
+        body.instagram-mode .ig-survey-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        body.instagram-mode .ig-survey-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        body.instagram-mode .ig-survey-text h3 {
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        body.instagram-mode .ig-survey-text p {
+            font-size: 0.75rem;
+            color: #A8A8A8;
+        }
+
+        body.instagram-mode .ig-survey-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        body.instagram-mode .ig-survey-btn {
+            width: 100%;
+            height: 40px;
+            border: 1px solid #262626;
+            background-color: #000000;
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 4px;
+        }
+
+        body.instagram-mode .ig-survey-btn:hover {
+            opacity: 0.9;
+        }
+
+        body.instagram-mode .ig-survey-btn.btn-primary {
+            background-color: #0095F6;
+            border-color: #0095F6;
+        }
+
+        body.instagram-mode .ig-survey-btn.btn-secondary {
+            background-color: #000000;
+            border-color: #262626;
+        }
+
+        body.instagram-mode .ig-survey-btn.btn-secondary:hover {
+            background-color: #121212;
+        }
+
+        /* Instagram Seção de ações */
+        body.instagram-mode .ig-actions-section {
+            padding: 0.75rem 0.75rem 0.5rem;
+        }
+
+        body.instagram-mode .ig-action-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+
+        body.instagram-mode .ig-left-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        body.instagram-mode .ig-action-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        body.instagram-mode .ig-action-btn:hover {
+            color: #A8A8A8;
+        }
+
+        body.instagram-mode .ig-action-btn:active {
+            transform: scale(0.9);
+        }
+
+        body.instagram-mode .ig-action-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Instagram Estados dos botões de ação */
+        body.instagram-mode .ig-action-btn.liked svg {
+            fill: #FF3040;
+            stroke: #FF3040;
+        }
+
+        body.instagram-mode .ig-action-btn.saved svg {
+            fill: white;
+        }
+
+        /* Instagram Likes */
+        body.instagram-mode .ig-likes {
+            margin-bottom: 0.5rem;
+        }
+
+        body.instagram-mode .ig-likes-count {
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+        }
+
+        /* Instagram Caption */
+        body.instagram-mode .ig-caption {
+            margin-bottom: 0.5rem;
+        }
+
+        body.instagram-mode .ig-caption p {
+            font-size: 0.875rem;
+            line-height: 1.4;
+        }
+
+        body.instagram-mode .ig-caption-username {
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        body.instagram-mode .ig-caption .bold {
+            font-weight: 700;
+        }
+
+        /* Instagram Link de comentários */
+        body.instagram-mode .ig-comments-link {
+            margin-bottom: 0.25rem;
+        }
+
+        body.instagram-mode .ig-view-comments {
+            background: none;
+            border: none;
+            color: #A8A8A8;
+            font-size: 0.875rem;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        body.instagram-mode .ig-view-comments:hover {
+            color: #737373;
+        }
+
+        /* Instagram Timestamp */
+        body.instagram-mode .ig-timestamp {
+            margin-top: 0.5rem;
+        }
+
+        body.instagram-mode .ig-timestamp span {
+            color: #737373;
+            font-size: 0.625rem;
+            letter-spacing: 0.05em;
+        }
+    </style>
+
+    <style>
+        /* Base reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Hide templates by default */
+        .fb-container,
+        .ig-container {
+            display: none;
+        }
+
+        /* Show correct template based on mode */
+        body.facebook-mode .fb-container {
             display: block;
         }
 
-        .instagram-view-comments {
-            color: #8E8E8E;
-            font-size: 14px;
-            cursor: pointer;
-            margin-bottom: 8px;
-        }
-
-        .instagram-timestamp {
-            color: #8E8E8E;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.2px;
+        body.instagram-mode .ig-container {
+            display: flex;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- ==================== FACEBOOK TEMPLATE ==================== -->
+    <div class="fb-container">
         <!-- Header -->
-        <div class="header">
-            <div class="header-left">
-                <div class="avatar">
-                    <span class="avatar-inner">S</span>
-                </div>
-                <div class="header-info">
-                    <div class="header-title">
-                        <span class="brand-name">SHEIN</span>
-                        <div class="verified-badge">
-                            <svg class="icon-small" viewBox="0 0 24 24">
+        <div class="fb-header">
+            <div class="fb-header-left">
+                <div class="fb-avatar">S</div>
+                <div class="fb-header-info">
+                    <div class="fb-header-title">
+                        <span class="fb-brand-name">SHEIN</span>
+                        <div class="fb-verified-badge">
+                            <svg class="fb-icon-small" viewBox="0 0 24 24">
                                 <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
                         </div>
                     </div>
-                    <div class="header-meta">
-                        <span class="meta-text">Publicidad</span>
-                        <span class="meta-separator">•</span>
-                        <svg class="icon-tiny globe-icon" viewBox="0 0 24 24">
+                    <div class="fb-header-meta">
+                        <span>Publicidad</span>
+                        <span>•</span>
+                        <svg class="fb-icon-tiny" viewBox="0 0 24 24">
                             <circle cx="12" cy="12" r="10"></circle>
                             <line x1="2" y1="12" x2="22" y2="12"></line>
                             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
@@ -520,8 +662,8 @@
                     </div>
                 </div>
             </div>
-            <button class="more-button">
-                <svg class="icon" viewBox="0 0 24 24">
+            <button class="fb-more-button">
+                <svg class="fb-icon" viewBox="0 0 24 24">
                     <circle cx="12" cy="12" r="1"></circle>
                     <circle cx="19" cy="12" r="1"></circle>
                     <circle cx="5" cy="12" r="1"></circle>
@@ -529,106 +671,68 @@
             </button>
         </div>
 
-        <!-- Post Text (Facebook - before image) -->
-        <div class="post-text before-image">
-            <p>
+        <!-- Post Text -->
+        <div class="fb-post-text">
+            <p class="fb-post-text-content">
                 🎉 ¡Estamos regalando <span class="bold">productos GRATIS</span> a participantes afortunados!
                 Responde algunas preguntas sencillas para ver si calificas para una entrega gratuita en tu puerta. 📦 ✨
             </p>
         </div>
 
         <!-- Main Image -->
-        <div class="main-image">
+        <div class="fb-main-image">
             <img src="images/blue_and_white_gift_boxes_pile.png" 
                  alt="Pila de cajas de regalo azules y blancas">
         </div>
 
-        <!-- Instagram Actions -->
-        <div class="instagram-actions">
-            <div class="instagram-actions-row">
-                <div class="instagram-actions-left">
-                    <button class="instagram-action-btn liked">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                        </svg>
-                    </button>
-                    <button class="instagram-action-btn">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                        </svg>
-                    </button>
-                    <button class="instagram-action-btn">
-                        <svg viewBox="0 0 24 24">
-                            <line x1="22" y1="2" x2="11" y2="13"></line>
-                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                        </svg>
-                    </button>
-                </div>
-                <button class="instagram-action-btn">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                </button>
-            </div>
-            <div class="instagram-likes">24,892 Me gusta</div>
-        </div>
-
-        <!-- Post Text (Instagram - after actions) -->
-        <div class="post-text after-image">
-            <p>
-                <span class="username">shein_official</span> 🎉 ¡Estamos regalando <span class="bold">productos GRATIS</span> a participantes afortunados!
-                Responde algunas preguntas sencillas para ver si calificas para una entrega gratuita en tu puerta. 📦 ✨
-            </p>
-        </div>
-
         <!-- CTA Section -->
-        <div class="cta-section">
+        <div class="fb-cta-section">
             <div>
-                <h2 class="cta-title">¿Te gustaría recibir productos gratis?</h2>
-                <p class="cta-subtitle">Estamos buscando probadores de productos en tu área.</p>
+                <h2 class="fb-cta-title">¿Te gustaría recibir productos gratis?</h2>
+                <p class="fb-cta-subtitle">Estamos buscando probadores de productos en tu área.</p>
             </div>
 
-            <div class="button-group">
-                <button class="cta-button" onclick="handleVote()">Sí</button>
-                <button class="cta-button" onclick="handleVote()">No</button>
+            <div class="fb-button-group">
+                <button class="fb-cta-button">Sí</button>
+                <button class="fb-cta-button">No</button>
             </div>
         </div>
 
-        <!-- Social Stats - Facebook -->
-        <div class="social-stats">
-            <div class="stats-left">
-                <div class="reaction-icons">
-                    <div class="reaction-icon">
-                        <svg class="icon-small" viewBox="0 0 24 24">
+        <!-- Social Stats -->
+        <div class="fb-social-stats">
+            <div class="fb-stats-left">
+                <div class="fb-reaction-icons">
+                    <div class="fb-reaction-icon">
+                        <svg class="fb-icon-small" viewBox="0 0 24 24">
                             <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
                         </svg>
                     </div>
                 </div>
-                <span class="stats-link">2,4 mil</span>
+                <span class="fb-stats-link">2,4 mil</span>
             </div>
             
-            <div class="stats-right">
-                <span class="stats-link">458 comentarios</span>
-                <span class="stats-link">129 veces compartido</span>
+            <div class="fb-stats-right">
+                <span class="fb-stats-link">458 comentarios</span>
+                <span class="fb-stats-link">129 veces compartido</span>
             </div>
         </div>
 
-        <!-- Social Actions - Facebook -->
-        <div class="social-actions">
-            <button class="action-button">
-                <svg class="icon" viewBox="0 0 24 24">
+        <!-- Social Actions -->
+        <div class="fb-social-actions">
+            <button class="fb-action-button">
+                <svg class="fb-icon" viewBox="0 0 24 24">
                     <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
                 </svg>
                 <span>Me gusta</span>
             </button>
-            <button class="action-button">
-                <svg class="icon" viewBox="0 0 24 24">
+            <button class="fb-action-button">
+                <svg class="fb-icon" viewBox="0 0 24 24">
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                 </svg>
                 <span>Comentar</span>
             </button>
-            <button class="action-button">
-                <svg class="icon" viewBox="0 0 24 24">
+            <button class="fb-action-button">
+                <svg class="fb-icon" viewBox="0 0 24 24">
                     <circle cx="18" cy="5" r="3"></circle>
                     <circle cx="6" cy="12" r="3"></circle>
                     <circle cx="18" cy="19" r="3"></circle>
@@ -638,21 +742,129 @@
                 <span>Compartir</span>
             </button>
         </div>
+    </div>
 
-        <!-- Instagram Comments -->
-        <div class="instagram-comments">
-            <div class="instagram-view-comments">Ver los 458 comentarios</div>
-            <div class="instagram-timestamp">Hace 2 horas</div>
+    <!-- ==================== INSTAGRAM TEMPLATE ==================== -->
+    <div class="ig-container">
+        <div class="ig-card">
+            <!-- Header -->
+            <div class="ig-card-header">
+                <div class="ig-header-left">
+                    <div class="ig-avatar-wrapper">
+                        <div class="ig-avatar-gradient">
+                            <div class="ig-avatar-inner">
+                                <div class="ig-avatar">
+                                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="50" cy="50" r="50" fill="#000000"/>
+                                        <text x="50" y="62" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">SHEIN</text>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ig-user-info">
+                        <div class="ig-username-row">
+                            <span class="ig-username">SHEIN</span>
+                            <div class="ig-verified-badge">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <span class="ig-sponsored">Sponsored</span>
+                    </div>
+                </div>
+                <button class="ig-more-btn" aria-label="More options">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="1"></circle>
+                        <circle cx="19" cy="12" r="1"></circle>
+                        <circle cx="5" cy="12" r="1"></circle>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Survey Section (CTA) -->
+            <div class="ig-survey-section">
+                <div class="ig-survey-content">
+                    <div class="ig-survey-text">
+                        <h3 class="ig-survey-title">¿Te gustaría recibir productos gratis?</h3>
+                        <p class="ig-survey-subtitle">Estamos buscando probadores de productos en tu área.</p>
+                    </div>
+                    
+                    <div class="ig-survey-buttons">
+                        <button class="ig-survey-btn btn-primary">Sí</button>
+                        <button class="ig-survey-btn btn-secondary">No</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="ig-actions-section">
+                <div class="ig-action-buttons">
+                    <div class="ig-left-actions">
+                        <button class="ig-action-btn" aria-label="Like">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                        <button class="ig-action-btn" aria-label="Comment">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform: rotate(-90deg);">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                            </svg>
+                        </button>
+                        <button class="ig-action-btn" aria-label="Share">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                    </div>
+                    <button class="ig-action-btn" aria-label="Save">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Likes -->
+                <div class="ig-likes">
+                    <span class="ig-likes-count">2,451 likes</span>
+                </div>
+
+                <!-- Caption -->
+                <div class="ig-caption">
+                    <p class="ig-caption-text">
+                        <span class="ig-caption-username">SHEIN</span>
+                        ¡Estamos regalando <span class="bold">productos GRATIS</span> a participantes afortunados! Responde algunas preguntas sencillas para ver si calificas para una entrega gratuita en tu puerta. 📦 ✨
+                    </p>
+                </div>
+
+                <!-- Comments Link -->
+                <div class="ig-comments-link">
+                    <button class="ig-view-comments">Ver los 458 comentarios</button>
+                </div>
+
+                <!-- Timestamp -->
+                <div class="ig-timestamp">
+                    <span>HACE 2 HORAS</span>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Configuração dos quizzes
+        // ==================== CONFIGURAÇÃO DOS QUIZZES ====================
         const quizzes = {
             'clsh-xmas': {
-                postText: '🎉 ¡Estamos regalando <span class="bold">productos GRATIS</span> a participantes afortunados! Responde algunas preguntas sencillas para ver si calificas para una entrega gratuita en tu puerta. 📦 ✨',
-                ctaTitle: '¿Te gustaría recibir productos gratis?',
-                ctaSubtitle: 'Estamos buscando probadores de productos en tu área.',
+                // Facebook
+                fbPostText: '🎉 ¡Estamos regalando <span class="bold">productos GRATIS</span> a participantes afortunados! Responde algunas preguntas sencillas para ver si calificas para una entrega gratuita en tu puerta. 📦 ✨',
+                fbCtaTitle: '¿Te gustaría recibir productos gratis?',
+                fbCtaSubtitle: 'Estamos buscando probadores de productos en tu área.',
+                // Instagram
+                igSurveyTitle: '¿Te gustaría recibir productos gratis?',
+                igSurveySubtitle: 'Estamos buscando probadores de productos en tu área.',
+                igCaptionText: '¡Estamos regalando <span class="bold">productos GRATIS</span> a participantes afortunados! Responde algunas preguntas sencillas para ver si calificas para una entrega gratuita en tu puerta. 📦 ✨',
+                // Common
                 answers: [
                     { text: 'Sí', redirect: 'https://clothesshein.com/shn-1/' },
                     { text: 'No', redirect: 'https://clothesshein.com/shn-1/' }
@@ -660,9 +872,15 @@
                 privacyUrl: 'https://clothesshein.com/privacy-policy/'
             },
             'clsh-rp': {
-                postText: '🎉 ¡Estamos regalando <span class="bold">productos GRATIS</span> a participantes afortunados! Responde algunas preguntas sencillas para ver si calificas para una entrega gratuita en tu puerta. 📦 ✨',
-                ctaTitle: '¿Te gustaría recibir productos gratis?',
-                ctaSubtitle: 'Estamos buscando probadores de productos en tu área.',
+                // Facebook
+                fbPostText: '🎉 ¡Estamos regalando <span class="bold">productos GRATIS</span> a participantes afortunados! Responde algunas preguntas sencillas para ver si calificas para una entrega gratuita en tu puerta. 📦 ✨',
+                fbCtaTitle: '¿Te gustaría recibir productos gratis?',
+                fbCtaSubtitle: 'Estamos buscando probadores de productos en tu área.',
+                // Instagram
+                igSurveyTitle: '¿Te gustaría recibir productos gratis?',
+                igSurveySubtitle: 'Estamos buscando probadores de productos en tu área.',
+                igCaptionText: '¡Estamos regalando <span class="bold">productos GRATIS</span> a participantes afortunados! Responde algunas preguntas sencillas para ver si calificas para una entrega gratuita en tu puerta. 📦 ✨',
+                // Common
                 answers: [
                     { text: 'Sí', redirect: 'https://clothesshein.com/shn-1/' },
                     { text: 'No', redirect: 'https://clothesshein.com/shn-1/' }
@@ -671,7 +889,7 @@
             }
         };
 
-        // Cookie functions
+        // ==================== COOKIE FUNCTIONS ====================
         function setCookie(name, value, days) {
             const expires = new Date();
             expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
@@ -689,60 +907,28 @@
             return null;
         }
 
-        // Detect platform (first visit = facebook, second = instagram)
+        // ==================== PLATFORM DETECTION ====================
         function detectPlatform() {
-            const visitCount = getCookie('shein_visit_count');
+            const visitCount = getCookie('shein_quiz_visit');
             
             if (!visitCount) {
-                // First visit - show Facebook, set cookie
-                setCookie('shein_visit_count', '1', 30); // 30 days
+                // Primeira visita - mostrar Facebook
+                setCookie('shein_quiz_visit', '1', 30); // 30 dias
                 return 'facebook';
             } else {
-                // Second+ visit - show Instagram
+                // Segunda visita+ - mostrar Instagram
                 const count = parseInt(visitCount) + 1;
-                setCookie('shein_visit_count', count.toString(), 30);
+                setCookie('shein_quiz_visit', count.toString(), 30);
                 return 'instagram';
             }
         }
 
-        // Apply platform styling
-        function applyPlatformStyles(platform) {
-            if (platform === 'instagram') {
-                document.body.classList.add('instagram-mode');
-                
-                // Update header meta for Instagram
-                const metaText = document.querySelector('.meta-text');
-                if (metaText) metaText.textContent = 'Patrocinado';
-                
-                // Hide globe icon for Instagram
-                const globeIcon = document.querySelector('.globe-icon');
-                if (globeIcon) globeIcon.style.display = 'none';
-                
-                // Hide separator
-                const separator = document.querySelector('.meta-separator');
-                if (separator) separator.style.display = 'none';
-                
-                // Update avatar for Instagram (just letter, no inner span needed for Facebook)
-                const avatar = document.querySelector('.avatar');
-                if (avatar && !avatar.querySelector('.avatar-inner')) {
-                    avatar.innerHTML = '<span class="avatar-inner">S</span>';
-                }
-            } else {
-                // Facebook mode - fix avatar
-                const avatar = document.querySelector('.avatar');
-                if (avatar) {
-                    avatar.innerHTML = 'S';
-                }
-            }
-        }
-
-        // Função para pegar o ID da URL
+        // ==================== URL FUNCTIONS ====================
         function getQuizId() {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get('id');
         }
 
-        // Função para propagar parâmetros UTM
         function buildRedirectUrl(baseUrl) {
             const currentParams = new URLSearchParams(window.location.search);
             const redirectUrl = new URL(baseUrl);
@@ -761,7 +947,6 @@
             return redirectUrl.toString();
         }
 
-        // Função para redirecionar para a URL principal
         function redirectToMain() {
             const quizId = getQuizId();
             const quiz = quizzes[quizId];
@@ -770,79 +955,87 @@
             }
         }
 
-        // Função para carregar o quiz
-        function loadQuiz() {
-            const quizId = getQuizId();
-            const quiz = quizzes[quizId];
+        // ==================== FACEBOOK LOADER ====================
+        function loadFacebookQuiz(quiz) {
+            // Atualizar texto do post
+            document.querySelector('.fb-post-text-content').innerHTML = quiz.fbPostText;
 
-            // Detect and apply platform
-            const platform = detectPlatform();
-            applyPlatformStyles(platform);
+            // Atualizar título e subtítulo CTA
+            document.querySelector('.fb-cta-title').textContent = quiz.fbCtaTitle;
+            document.querySelector('.fb-cta-subtitle').textContent = quiz.fbCtaSubtitle;
 
-            // Se não encontrar o quiz, não mostrar nada
-            if (!quiz) {
-                document.querySelector('.container').style.display = 'none';
-                document.body.style.backgroundColor = '#ffffff';
-                document.body.classList.remove('instagram-mode');
-                return;
-            }
-
-            // Atualizar texto do post (both versions)
-            document.querySelectorAll('.post-text p').forEach(p => {
-                if (platform === 'instagram') {
-                    p.innerHTML = '<span class="username">shein_official</span> ' + quiz.postText;
-                } else {
-                    p.innerHTML = quiz.postText;
-                }
-            });
-
-            // Atualizar título CTA
-            document.querySelector('.cta-title').textContent = quiz.ctaTitle;
-
-            // Atualizar subtítulo CTA
-            document.querySelector('.cta-subtitle').textContent = quiz.ctaSubtitle;
-
-            // Atualizar botões de resposta (Sí/No)
-            const buttonGroup = document.querySelector('.button-group');
+            // Atualizar botões de resposta
+            const buttonGroup = document.querySelector('.fb-button-group');
             buttonGroup.innerHTML = '';
             
             quiz.answers.forEach(answer => {
                 const button = document.createElement('button');
-                button.className = 'cta-button';
+                button.className = 'fb-cta-button';
                 button.textContent = answer.text;
                 button.onclick = redirectToMain;
                 buttonGroup.appendChild(button);
             });
 
-            // Adicionar redirect aos botões de ação social - Facebook (Like, Comment, Share)
-            document.querySelectorAll('.action-button').forEach(button => {
+            // Adicionar redirect a todos elementos clicáveis
+            document.querySelectorAll('.fb-action-button').forEach(btn => btn.onclick = redirectToMain);
+            document.querySelectorAll('.fb-stats-link').forEach(link => link.onclick = redirectToMain);
+            document.querySelector('.fb-more-button').onclick = redirectToMain;
+            document.querySelector('.fb-main-image').onclick = redirectToMain;
+            document.querySelector('.fb-header-left').onclick = redirectToMain;
+        }
+
+        // ==================== INSTAGRAM LOADER ====================
+        function loadInstagramQuiz(quiz) {
+            // Atualizar título e subtítulo do survey
+            document.querySelector('.ig-survey-title').textContent = quiz.igSurveyTitle;
+            document.querySelector('.ig-survey-subtitle').textContent = quiz.igSurveySubtitle;
+
+            // Atualizar caption
+            document.querySelector('.ig-caption-text').innerHTML = '<span class="ig-caption-username">SHEIN</span> ' + quiz.igCaptionText;
+
+            // Atualizar botões de resposta
+            const buttonsContainer = document.querySelector('.ig-survey-buttons');
+            buttonsContainer.innerHTML = '';
+            
+            quiz.answers.forEach((answer, index) => {
+                const button = document.createElement('button');
+                button.className = 'ig-survey-btn ' + (index === 0 ? 'btn-primary' : 'btn-secondary');
+                button.textContent = answer.text;
                 button.onclick = redirectToMain;
+                buttonsContainer.appendChild(button);
             });
 
-            // Adicionar redirect aos stats - Facebook (likes count, comments, shares)
-            document.querySelectorAll('.stats-link').forEach(link => {
-                link.onclick = redirectToMain;
-            });
+            // Adicionar redirect a todos elementos clicáveis
+            document.querySelectorAll('.ig-action-btn').forEach(btn => btn.onclick = redirectToMain);
+            document.querySelector('.ig-likes-count').onclick = redirectToMain;
+            document.querySelector('.ig-view-comments').onclick = redirectToMain;
+            document.querySelector('.ig-more-btn').onclick = redirectToMain;
+            document.querySelector('.ig-header-left').onclick = redirectToMain;
+        }
 
-            // Adicionar redirect ao botão more (três pontos)
-            document.querySelector('.more-button').onclick = redirectToMain;
+        // ==================== MAIN LOADER ====================
+        function loadQuiz() {
+            const quizId = getQuizId();
+            const quiz = quizzes[quizId];
+            const platform = detectPlatform();
 
-            // Instagram specific redirects
-            document.querySelectorAll('.instagram-action-btn').forEach(button => {
-                button.onclick = redirectToMain;
-            });
+            // Aplicar classe do modo ao body
+            document.body.classList.add(platform + '-mode');
 
-            const instagramLikes = document.querySelector('.instagram-likes');
-            if (instagramLikes) instagramLikes.onclick = redirectToMain;
+            // Se não encontrar o quiz, esconder tudo
+            if (!quiz) {
+                document.querySelector('.fb-container').style.display = 'none';
+                document.querySelector('.ig-container').style.display = 'none';
+                document.body.style.backgroundColor = platform === 'instagram' ? '#000000' : '#ffffff';
+                return;
+            }
 
-            const viewComments = document.querySelector('.instagram-view-comments');
-            if (viewComments) viewComments.onclick = redirectToMain;
-
-            // Main image click
-            document.querySelector('.main-image').onclick = redirectToMain;
-
-            // Header click
-            document.querySelector('.header-left').onclick = redirectToMain;
+            // Carregar quiz baseado na plataforma
+            if (platform === 'facebook') {
+                loadFacebookQuiz(quiz);
+            } else {
+                loadInstagramQuiz(quiz);
+            }
         }
 
         // Carregar quiz quando a página carregar
