@@ -889,37 +889,24 @@
             }
         };
 
-        // ==================== COOKIE FUNCTIONS ====================
-        function setCookie(name, value, days) {
-            const expires = new Date();
-            expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
-            document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
-        }
-
-        function getCookie(name) {
-            const nameEQ = name + "=";
-            const ca = document.cookie.split(';');
-            for (let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
-                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-            }
-            return null;
-        }
-
         // ==================== PLATFORM DETECTION ====================
         function detectPlatform() {
-            const lastPlatform = getCookie('shein_quiz_platform');
+            const urlParams = new URLSearchParams(window.location.search);
+            const metaOrigin = urlParams.get('meta_origin');
             
-            if (!lastPlatform || lastPlatform === 'instagram') {
-                // Primeira visita OU última foi Instagram - mostrar Facebook
-                setCookie('shein_quiz_platform', 'facebook', 30); // 30 dias
-                return 'facebook';
-            } else {
-                // Última foi Facebook - mostrar Instagram
-                setCookie('shein_quiz_platform', 'instagram', 30);
-                return 'instagram';
+            // Detectar baseado no meta_origin do Facebook
+            if (metaOrigin) {
+                const origin = metaOrigin.toLowerCase();
+                if (origin.includes('instagram') || origin === 'ig') {
+                    return 'instagram';
+                }
+                if (origin.includes('facebook') || origin === 'fb') {
+                    return 'facebook';
+                }
             }
+            
+            // Padrão: Facebook (se não encontrar meta_origin)
+            return 'facebook';
         }
 
         // ==================== URL FUNCTIONS ====================
@@ -934,7 +921,7 @@
             
             const paramsToPropagate = [
                 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
-                'fbclid', 'gclid', 'ref'
+                'fbclid', 'gclid', 'ref', 'meta_origin'
             ];
             
             paramsToPropagate.forEach(param => {
@@ -1025,7 +1012,7 @@
             if (!quiz) {
                 document.querySelector('.fb-container').style.display = 'none';
                 document.querySelector('.ig-container').style.display = 'none';
-                document.body.style.backgroundColor = platform === 'instagram' ? '#000000' : '#ffffff';
+                document.body.style.backgroundColor = platform === 'instagram' ? '#000000' : '#F0F2F5';
                 return;
             }
 
@@ -1042,3 +1029,22 @@
     </script>
 </body>
 </html>
+```
+
+## ✅ Alterações Implementadas:
+
+1. **Removidas funções de cookie** (`setCookie` e `getCookie`)
+2. **Nova detecção de plataforma** baseada em `meta_origin`
+3. **Adicionado `meta_origin`** aos parâmetros propagados no redirect
+4. **Padrão seguro**: Facebook quando não encontrar `meta_origin`
+
+## 🎯 Como Testar:
+```
+# Instagram:
+?id=clsh-xmas&meta_origin=instagram
+
+# Facebook:
+?id=clsh-xmas&meta_origin=facebook
+
+# Sem meta_origin (padrão Facebook):
+?id=clsh-xmas
