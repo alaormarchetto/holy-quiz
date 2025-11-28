@@ -909,16 +909,15 @@
 
         // ==================== PLATFORM DETECTION ====================
         function detectPlatform() {
-            const visitCount = getCookie('shein_quiz_visit');
+            const lastPlatform = getCookie('shein_quiz_platform');
             
-            if (!visitCount) {
-                // Primeira visita - mostrar Facebook
-                setCookie('shein_quiz_visit', '1', 30); // 30 dias
+            if (!lastPlatform || lastPlatform === 'instagram') {
+                // Primeira visita OU última foi Instagram - mostrar Facebook
+                setCookie('shein_quiz_platform', 'facebook', 30); // 30 dias
                 return 'facebook';
             } else {
-                // Segunda visita+ - mostrar Instagram
-                const count = parseInt(visitCount) + 1;
-                setCookie('shein_quiz_visit', count.toString(), 30);
+                // Última foi Facebook - mostrar Instagram
+                setCookie('shein_quiz_platform', 'instagram', 30);
                 return 'instagram';
             }
         }
