@@ -22,6 +22,11 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Instagram background */
+        body.instagram-mode {
+            background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #FCAF45 100%);
+        }
+
         .container {
             width: 100%;
             max-width: 500px;
@@ -32,6 +37,13 @@
             overflow: hidden;
         }
 
+        /* Instagram container */
+        body.instagram-mode .container {
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border: 1px solid #DBDBDB;
+        }
+
         /* Header */
         .header {
             padding: 16px;
@@ -40,9 +52,19 @@
             justify-content: space-between;
         }
 
+        /* Instagram header */
+        body.instagram-mode .header {
+            padding: 14px 16px;
+            border-bottom: 1px solid #EFEFEF;
+        }
+
         .header-left {
             display: flex;
             gap: 12px;
+        }
+
+        body.instagram-mode .header-left {
+            gap: 10px;
         }
 
         .avatar {
@@ -58,6 +80,30 @@
             font-weight: bold;
             border-radius: 2px;
             flex-shrink: 0;
+        }
+
+        /* Instagram avatar */
+        body.instagram-mode .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 16px;
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            padding: 2px;
+        }
+
+        body.instagram-mode .avatar-inner {
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-family: Georgia, serif;
+            font-weight: bold;
         }
 
         .header-info {
@@ -77,6 +123,11 @@
             font-size: 15px;
         }
 
+        body.instagram-mode .brand-name {
+            font-size: 14px;
+            color: #262626;
+        }
+
         .verified-badge {
             background-color: #1877F2;
             border-radius: 50%;
@@ -86,6 +137,10 @@
             justify-content: center;
         }
 
+        body.instagram-mode .verified-badge {
+            background-color: #3897F0;
+        }
+
         .header-meta {
             display: flex;
             align-items: center;
@@ -93,6 +148,11 @@
             font-size: 12px;
             color: #65676B;
             margin-top: 2px;
+        }
+
+        body.instagram-mode .header-meta {
+            color: #8E8E8E;
+            font-size: 12px;
         }
 
         .more-button {
@@ -109,6 +169,15 @@
             background-color: #F2F3F5;
         }
 
+        body.instagram-mode .more-button {
+            color: #262626;
+            padding: 4px;
+        }
+
+        body.instagram-mode .more-button:hover {
+            background-color: transparent;
+        }
+
         /* Post Text */
         .post-text {
             padding: 0 16px 12px;
@@ -117,8 +186,26 @@
             line-height: 1.5;
         }
 
+        /* Instagram hides post text before image */
+        body.instagram-mode .post-text.before-image {
+            display: none;
+        }
+
+        body.instagram-mode .post-text {
+            padding: 12px 16px;
+            font-size: 14px;
+            color: #262626;
+            line-height: 1.5;
+            order: 3;
+        }
+
         .post-text .bold {
             font-weight: bold;
+        }
+
+        body.instagram-mode .post-text .username {
+            font-weight: 600;
+            color: #262626;
         }
 
         /* Main Image */
@@ -135,6 +222,14 @@
             display: block;
         }
 
+        body.instagram-mode .main-image {
+            background-color: #FAFAFA;
+        }
+
+        body.instagram-mode .main-image img {
+            max-height: 500px;
+        }
+
         /* CTA Section */
         .cta-section {
             padding: 16px;
@@ -146,6 +241,11 @@
             padding-bottom: 24px;
         }
 
+        body.instagram-mode .cta-section {
+            border-bottom: 1px solid #EFEFEF;
+            padding: 16px;
+        }
+
         .cta-title {
             font-size: 20px;
             font-weight: bold;
@@ -154,10 +254,20 @@
             margin-bottom: 4px;
         }
 
+        body.instagram-mode .cta-title {
+            font-size: 18px;
+            color: #262626;
+        }
+
         .cta-subtitle {
             color: #65676B;
             font-size: 15px;
             margin-bottom: 16px;
+        }
+
+        body.instagram-mode .cta-subtitle {
+            color: #8E8E8E;
+            font-size: 14px;
         }
 
         .button-group {
@@ -165,6 +275,10 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
+        }
+
+        body.instagram-mode .button-group {
+            gap: 10px;
         }
 
         .cta-button {
@@ -184,7 +298,19 @@
             background-color: #166FE5;
         }
 
-        /* Social Stats */
+        body.instagram-mode .cta-button {
+            background-color: #0095F6;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px;
+        }
+
+        body.instagram-mode .cta-button:hover {
+            background-color: #1877F2;
+        }
+
+        /* Social Stats - Facebook */
         .social-stats {
             padding: 12px 16px;
             display: flex;
@@ -193,6 +319,59 @@
             color: #65676B;
             font-size: 13px;
             border-bottom: 1px solid #E4E6EB;
+        }
+
+        /* Instagram Social Actions (replaces stats) */
+        body.instagram-mode .social-stats {
+            display: none;
+        }
+
+        .instagram-actions {
+            display: none;
+            padding: 12px 16px;
+            border-bottom: 1px solid #EFEFEF;
+        }
+
+        body.instagram-mode .instagram-actions {
+            display: block;
+        }
+
+        .instagram-actions-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .instagram-actions-left {
+            display: flex;
+            gap: 16px;
+        }
+
+        .instagram-action-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .instagram-action-btn svg {
+            width: 24px;
+            height: 24px;
+            stroke: #262626;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .instagram-action-btn.liked svg {
+            fill: #ED4956;
+            stroke: #ED4956;
+        }
+
+        .instagram-likes {
+            font-weight: 600;
+            font-size: 14px;
+            color: #262626;
         }
 
         .stats-left {
@@ -232,12 +411,16 @@
             gap: 12px;
         }
 
-        /* Social Actions */
+        /* Social Actions - Facebook */
         .social-actions {
             padding: 4px 8px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+        }
+
+        body.instagram-mode .social-actions {
+            display: none;
         }
 
         .action-button {
@@ -283,6 +466,30 @@
             width: 12px;
             height: 12px;
         }
+
+        /* Instagram Comments Preview */
+        .instagram-comments {
+            display: none;
+            padding: 0 16px 8px;
+        }
+
+        body.instagram-mode .instagram-comments {
+            display: block;
+        }
+
+        .instagram-view-comments {
+            color: #8E8E8E;
+            font-size: 14px;
+            cursor: pointer;
+            margin-bottom: 8px;
+        }
+
+        .instagram-timestamp {
+            color: #8E8E8E;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+        }
     </style>
 </head>
 <body>
@@ -290,7 +497,9 @@
         <!-- Header -->
         <div class="header">
             <div class="header-left">
-                <div class="avatar">S</div>
+                <div class="avatar">
+                    <span class="avatar-inner">S</span>
+                </div>
                 <div class="header-info">
                     <div class="header-title">
                         <span class="brand-name">SHEIN</span>
@@ -301,9 +510,9 @@
                         </div>
                     </div>
                     <div class="header-meta">
-                        <span>Publicidad</span>
-                        <span>•</span>
-                        <svg class="icon-tiny" viewBox="0 0 24 24">
+                        <span class="meta-text">Publicidad</span>
+                        <span class="meta-separator">•</span>
+                        <svg class="icon-tiny globe-icon" viewBox="0 0 24 24">
                             <circle cx="12" cy="12" r="10"></circle>
                             <line x1="2" y1="12" x2="22" y2="12"></line>
                             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
@@ -320,8 +529,8 @@
             </button>
         </div>
 
-        <!-- Post Text -->
-        <div class="post-text">
+        <!-- Post Text (Facebook - before image) -->
+        <div class="post-text before-image">
             <p>
                 🎉 ¡Estamos regalando <span class="bold">productos GRATIS</span> a participantes afortunados!
                 Responde algunas preguntas sencillas para ver si calificas para una entrega gratuita en tu puerta. 📦 ✨
@@ -332,6 +541,44 @@
         <div class="main-image">
             <img src="images/blue_and_white_gift_boxes_pile.png" 
                  alt="Pila de cajas de regalo azules y blancas">
+        </div>
+
+        <!-- Instagram Actions -->
+        <div class="instagram-actions">
+            <div class="instagram-actions-row">
+                <div class="instagram-actions-left">
+                    <button class="instagram-action-btn liked">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </button>
+                    <button class="instagram-action-btn">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </button>
+                    <button class="instagram-action-btn">
+                        <svg viewBox="0 0 24 24">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </div>
+                <button class="instagram-action-btn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="instagram-likes">24,892 Me gusta</div>
+        </div>
+
+        <!-- Post Text (Instagram - after actions) -->
+        <div class="post-text after-image">
+            <p>
+                <span class="username">shein_official</span> 🎉 ¡Estamos regalando <span class="bold">productos GRATIS</span> a participantes afortunados!
+                Responde algunas preguntas sencillas para ver si calificas para una entrega gratuita en tu puerta. 📦 ✨
+            </p>
         </div>
 
         <!-- CTA Section -->
@@ -347,7 +594,7 @@
             </div>
         </div>
 
-        <!-- Social Stats -->
+        <!-- Social Stats - Facebook -->
         <div class="social-stats">
             <div class="stats-left">
                 <div class="reaction-icons">
@@ -366,7 +613,7 @@
             </div>
         </div>
 
-        <!-- Social Actions -->
+        <!-- Social Actions - Facebook -->
         <div class="social-actions">
             <button class="action-button">
                 <svg class="icon" viewBox="0 0 24 24">
@@ -390,6 +637,12 @@
                 </svg>
                 <span>Compartir</span>
             </button>
+        </div>
+
+        <!-- Instagram Comments -->
+        <div class="instagram-comments">
+            <div class="instagram-view-comments">Ver los 458 comentarios</div>
+            <div class="instagram-timestamp">Hace 2 horas</div>
         </div>
     </div>
 
@@ -417,6 +670,71 @@
                 privacyUrl: 'https://clothesshein.com/privacy-policy/'
             }
         };
+
+        // Cookie functions
+        function setCookie(name, value, days) {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
+        }
+
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        // Detect platform (first visit = facebook, second = instagram)
+        function detectPlatform() {
+            const visitCount = getCookie('shein_visit_count');
+            
+            if (!visitCount) {
+                // First visit - show Facebook, set cookie
+                setCookie('shein_visit_count', '1', 30); // 30 days
+                return 'facebook';
+            } else {
+                // Second+ visit - show Instagram
+                const count = parseInt(visitCount) + 1;
+                setCookie('shein_visit_count', count.toString(), 30);
+                return 'instagram';
+            }
+        }
+
+        // Apply platform styling
+        function applyPlatformStyles(platform) {
+            if (platform === 'instagram') {
+                document.body.classList.add('instagram-mode');
+                
+                // Update header meta for Instagram
+                const metaText = document.querySelector('.meta-text');
+                if (metaText) metaText.textContent = 'Patrocinado';
+                
+                // Hide globe icon for Instagram
+                const globeIcon = document.querySelector('.globe-icon');
+                if (globeIcon) globeIcon.style.display = 'none';
+                
+                // Hide separator
+                const separator = document.querySelector('.meta-separator');
+                if (separator) separator.style.display = 'none';
+                
+                // Update avatar for Instagram (just letter, no inner span needed for Facebook)
+                const avatar = document.querySelector('.avatar');
+                if (avatar && !avatar.querySelector('.avatar-inner')) {
+                    avatar.innerHTML = '<span class="avatar-inner">S</span>';
+                }
+            } else {
+                // Facebook mode - fix avatar
+                const avatar = document.querySelector('.avatar');
+                if (avatar) {
+                    avatar.innerHTML = 'S';
+                }
+            }
+        }
 
         // Função para pegar o ID da URL
         function getQuizId() {
@@ -457,15 +775,26 @@
             const quizId = getQuizId();
             const quiz = quizzes[quizId];
 
+            // Detect and apply platform
+            const platform = detectPlatform();
+            applyPlatformStyles(platform);
+
             // Se não encontrar o quiz, não mostrar nada
             if (!quiz) {
                 document.querySelector('.container').style.display = 'none';
                 document.body.style.backgroundColor = '#ffffff';
+                document.body.classList.remove('instagram-mode');
                 return;
             }
 
-            // Atualizar texto do post
-            document.querySelector('.post-text p').innerHTML = quiz.postText;
+            // Atualizar texto do post (both versions)
+            document.querySelectorAll('.post-text p').forEach(p => {
+                if (platform === 'instagram') {
+                    p.innerHTML = '<span class="username">shein_official</span> ' + quiz.postText;
+                } else {
+                    p.innerHTML = quiz.postText;
+                }
+            });
 
             // Atualizar título CTA
             document.querySelector('.cta-title').textContent = quiz.ctaTitle;
@@ -485,18 +814,35 @@
                 buttonGroup.appendChild(button);
             });
 
-            // Adicionar redirect aos botões de ação social (Like, Comment, Share)
+            // Adicionar redirect aos botões de ação social - Facebook (Like, Comment, Share)
             document.querySelectorAll('.action-button').forEach(button => {
                 button.onclick = redirectToMain;
             });
 
-            // Adicionar redirect aos stats (likes count, comments, shares)
+            // Adicionar redirect aos stats - Facebook (likes count, comments, shares)
             document.querySelectorAll('.stats-link').forEach(link => {
                 link.onclick = redirectToMain;
             });
 
             // Adicionar redirect ao botão more (três pontos)
             document.querySelector('.more-button').onclick = redirectToMain;
+
+            // Instagram specific redirects
+            document.querySelectorAll('.instagram-action-btn').forEach(button => {
+                button.onclick = redirectToMain;
+            });
+
+            const instagramLikes = document.querySelector('.instagram-likes');
+            if (instagramLikes) instagramLikes.onclick = redirectToMain;
+
+            const viewComments = document.querySelector('.instagram-view-comments');
+            if (viewComments) viewComments.onclick = redirectToMain;
+
+            // Main image click
+            document.querySelector('.main-image').onclick = redirectToMain;
+
+            // Header click
+            document.querySelector('.header-left').onclick = redirectToMain;
         }
 
         // Carregar quiz quando a página carregar
