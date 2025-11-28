@@ -1029,22 +1029,3 @@
     </script>
 </body>
 </html>
-```
-
-## ✅ Alterações Implementadas:
-
-1. **Removidas funções de cookie** (`setCookie` e `getCookie`)
-2. **Nova detecção de plataforma** baseada em `meta_origin`
-3. **Adicionado `meta_origin`** aos parâmetros propagados no redirect
-4. **Padrão seguro**: Facebook quando não encontrar `meta_origin`
-
-## 🎯 Como Testar:
-```
-# Instagram:
-?id=clsh-xmas&meta_origin=instagram
-
-# Facebook:
-?id=clsh-xmas&meta_origin=facebook
-
-# Sem meta_origin (padrão Facebook):
-?id=clsh-xmas
