@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Feed - SHEIN</title>
+    <title>SHEIN - Productos Gratis</title>
     <style>
-        /* Reset e configurações básicas */
         * {
             margin: 0;
             padding: 0;
@@ -14,462 +13,393 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #000000;
-            color: #FAFAFA;
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        /* Container principal */
-        .container {
+            background-color: #F0F2F5;
             min-height: 100vh;
             display: flex;
+            align-items: center;
             justify-content: center;
-            align-items: flex-start;
-            padding: 1rem 0;
+            padding: 16px;
+            -webkit-font-smoothing: antialiased;
         }
 
-        @media (min-width: 768px) {
-            .container {
-                padding: 2rem 0;
-            }
-        }
-
-        /* Card do post */
-        .card {
+        .container {
             width: 100%;
-            max-width: 470px;
-            background-color: #000000;
-            color: white;
+            max-width: 500px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #E4E6EB;
             overflow: hidden;
         }
 
-        @media (min-width: 768px) {
-            .card {
-                border: 1px solid #262626;
-                border-radius: 8px;
-            }
-        }
-
-        /* Header do card */
-        .card-header {
+        /* Header */
+        .header {
+            padding: 16px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
-            padding: 0.75rem;
         }
 
         .header-left {
             display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        /* Avatar com gradiente */
-        .avatar-wrapper {
-            position: relative;
-        }
-
-        .avatar-gradient {
-            padding: 2px;
-            background: linear-gradient(to top right, #FFC107, #F44336, #9C27B0);
-            border-radius: 50%;
-        }
-
-        .avatar-inner {
-            background-color: #000000;
-            padding: 2px;
-            border-radius: 50%;
+            gap: 12px;
         }
 
         .avatar {
-            width: 32px;
-            height: 32px;
-            border: 1px solid #262626;
-            border-radius: 50%;
-            overflow: hidden;
+            width: 40px;
+            height: 40px;
+            background-color: black;
+            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #000000;
+            font-size: 20px;
+            font-family: Georgia, serif;
+            font-weight: bold;
+            border-radius: 2px;
+            flex-shrink: 0;
         }
 
-        .avatar img,
-        .avatar svg {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Informações do usuário */
-        .user-info {
+        .header-info {
             display: flex;
             flex-direction: column;
         }
 
-        .username-row {
+        .header-title {
             display: flex;
             align-items: center;
-            gap: 0.25rem;
+            gap: 4px;
         }
 
-        .username {
-            font-weight: 600;
-            font-size: 0.875rem;
+        .brand-name {
+            font-weight: bold;
+            color: #050505;
+            font-size: 15px;
         }
 
         .verified-badge {
-            background-color: #3B82F6;
+            background-color: #1877F2;
             border-radius: 50%;
-            width: 12px;
-            height: 12px;
+            padding: 2px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .verified-badge svg {
-            color: white;
+        .header-meta {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: #65676B;
+            margin-top: 2px;
         }
 
-        .sponsored {
-            font-size: 0.75rem;
-            color: #A8A8A8;
-        }
-
-        /* Botão de mais opções */
-        .more-btn {
+        .more-button {
             background: none;
             border: none;
-            color: white;
+            color: #65676B;
+            padding: 8px;
+            border-radius: 50%;
             cursor: pointer;
-            padding: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             transition: background-color 0.2s;
         }
 
-        .more-btn:hover {
-            background-color: #171717;
-            border-radius: 4px;
+        .more-button:hover {
+            background-color: #F2F3F5;
         }
 
-        /* Imagem do post */
-        .post-image {
+        /* Post Text */
+        .post-text {
+            padding: 0 16px 12px;
+            font-size: 15px;
+            color: #050505;
+            line-height: 1.5;
+        }
+
+        .post-text .bold {
+            font-weight: bold;
+        }
+
+        /* Main Image */
+        .main-image {
             width: 100%;
-            aspect-ratio: 1 / 1;
-            background-color: #121212;
+            background-color: #F7F8FA;
+        }
+
+        .main-image img {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border-bottom: 1px solid #E4E6EB;
+            padding-bottom: 24px;
+        }
+
+        .cta-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #050505;
+            line-height: 1.3;
+            margin-bottom: 4px;
+        }
+
+        .cta-subtitle {
+            color: #65676B;
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+
+        .button-group {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .cta-button {
+            width: 100%;
+            background-color: #1877F2;
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .cta-button:hover {
+            background-color: #166FE5;
+        }
+
+        .cta-button.secondary {
+            background-color: transparent;
+            color: #65676B;
+            border: 1px solid #65676B;
+        }
+
+        .cta-button.secondary:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        /* Social Stats */
+        .social-stats {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #65676B;
+            font-size: 13px;
+            border-bottom: 1px solid #E4E6EB;
+        }
+
+        .stats-left {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .reaction-icons {
+            display: flex;
+            margin-left: -4px;
+        }
+
+        .reaction-icon {
+            width: 18px;
+            height: 18px;
+            background-color: #1877F2;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            border: 2px solid white;
+            position: relative;
+            z-index: 10;
         }
 
-        .post-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        /* Seção de enquete/CTA */
-        .survey-section {
-            background-color: #121212;
-            padding: 1rem;
-            border-top: 1px solid #262626;
-        }
-
-        .learn-more {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.75rem;
-        }
-
-        .learn-more-text {
-            color: #0095F6;
-            font-weight: 500;
-            font-size: 0.875rem;
-        }
-
-        .learn-more svg {
-            color: #737373;
-        }
-
-        .survey-content {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .survey-text {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-
-        .survey-text h3 {
-            font-weight: 600;
-            font-size: 0.875rem;
-        }
-
-        .survey-text p {
-            font-size: 0.75rem;
-            color: #A8A8A8;
-        }
-
-        .survey-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .survey-btn {
-            width: 100%;
-            height: 40px;
-            border: 1px solid #262626;
-            background-color: #000000;
-            color: white;
-            font-weight: 500;
+        .stats-link {
             cursor: pointer;
-            transition: all 0.2s;
-            border-radius: 4px;
         }
 
-        .survey-btn:hover {
-            background-color: #121212;
+        .stats-link:hover {
+            text-decoration: underline;
         }
 
-        .survey-btn.selected-yes {
-            background-color: #0095F6;
-            border-color: #0095F6;
+        .stats-right {
+            display: flex;
+            gap: 12px;
         }
 
-        .survey-btn.selected-no {
-            background-color: #262626;
-            border-color: #262626;
-        }
-
-        /* Seção de ações */
-        .actions-section {
-            padding: 0.75rem 0.75rem 0.5rem;
-        }
-
-        .action-buttons {
+        /* Social Actions */
+        .social-actions {
+            padding: 4px 8px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 0.75rem;
         }
 
-        .left-actions {
+        .action-button {
+            flex: 1;
             display: flex;
             align-items: center;
-            gap: 1rem;
-        }
-
-        .action-btn {
+            justify-content: center;
+            gap: 8px;
+            padding: 8px;
             background: none;
             border: none;
-            color: white;
+            color: #65676B;
+            font-weight: 500;
+            font-size: 15px;
+            border-radius: 6px;
             cursor: pointer;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
+            transition: background-color 0.2s;
         }
 
-        .action-btn:hover {
-            color: #A8A8A8;
+        .action-button:hover {
+            background-color: #F2F3F5;
         }
 
-        .action-btn:active {
-            transform: scale(0.9);
+        .icon {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
-        .action-btn svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        /* Estados dos botões de ação */
-        .action-btn.liked svg {
-            fill: #FF3040;
-            stroke: #FF3040;
-        }
-
-        .action-btn.saved svg {
+        .icon-small {
+            width: 10px;
+            height: 10px;
+            stroke: white;
             fill: white;
+            stroke-width: 4;
         }
 
-        /* Likes */
-        .likes {
-            margin-bottom: 0.5rem;
-        }
-
-        .likes-count {
-            font-weight: 600;
-            font-size: 0.875rem;
-            cursor: pointer;
-        }
-
-        /* Caption */
-        .caption {
-            margin-bottom: 0.5rem;
-        }
-
-        .caption p {
-            font-size: 0.875rem;
-            line-height: 1.4;
-        }
-
-        .caption-username {
-            font-weight: 600;
-            margin-right: 0.5rem;
-        }
-
-        .caption .bold {
-            font-weight: 700;
-        }
-
-        /* Link de comentários */
-        .comments-link {
-            margin-bottom: 0.25rem;
-        }
-
-        .view-comments {
-            background: none;
-            border: none;
-            color: #A8A8A8;
-            font-size: 0.875rem;
-            cursor: pointer;
-            padding: 0;
-        }
-
-        .view-comments:hover {
-            color: #737373;
-        }
-
-        /* Timestamp */
-        .timestamp {
-            margin-top: 0.5rem;
-        }
-
-        .timestamp span {
-            color: #737373;
-            font-size: 0.625rem;
-            letter-spacing: 0.05em;
+        .icon-tiny {
+            width: 12px;
+            height: 12px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="card">
-            <!-- Header -->
-            <div class="card-header">
-                <div class="header-left">
-                    <div class="avatar-wrapper">
-                        <div class="avatar-gradient">
-                            <div class="avatar-inner">
-                                <div class="avatar">
-                                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="50" cy="50" r="50" fill="#000000"/>
-                                        <text x="50" y="62" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">SHEIN</text>
-                                    </svg>
-                                </div>
-                            </div>
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <div class="avatar">S</div>
+                <div class="header-info">
+                    <div class="header-title">
+                        <span class="brand-name">SHEIN</span>
+                        <div class="verified-badge">
+                            <svg class="icon-small" viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
                         </div>
                     </div>
-                    <div class="user-info">
-                        <div class="username-row">
-                            <span class="username">SHEIN</span>
-                            <div class="verified-badge">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                            </div>
-                        </div>
-                        <span class="sponsored">Sponsored</span>
-                    </div>
-                </div>
-                <button class="more-btn" aria-label="More options">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="1"></circle>
-                        <circle cx="19" cy="12" r="1"></circle>
-                        <circle cx="5" cy="12" r="1"></circle>
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Survey Section (CTA) -->
-            <div class="survey-section">
-                <div class="survey-content">
-                    <div class="survey-text">
-                        <h3 class="survey-title">Would you like to receive free products?</h3>
-                        <p class="survey-subtitle">We are looking for product testers in your area.</p>
-                    </div>
-                    
-                    <div class="survey-buttons">
-                        <button class="survey-btn" id="yesBtn">Yes</button>
-                        <button class="survey-btn" id="noBtn">No</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Actions -->
-            <div class="actions-section">
-                <div class="action-buttons">
-                    <div class="left-actions">
-                        <button class="action-btn" id="likeBtn" aria-label="Like">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                            </svg>
-                        </button>
-                        <button class="action-btn" aria-label="Comment">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transform: rotate(-90deg);">
-                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-                            </svg>
-                        </button>
-                        <button class="action-btn" aria-label="Share">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <line x1="22" y1="2" x2="11" y2="13"></line>
-                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                            </svg>
-                        </button>
-                    </div>
-                    <button class="action-btn" id="saveBtn" aria-label="Save">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                    <div class="header-meta">
+                        <span>Publicidad</span>
+                        <span>•</span>
+                        <svg class="icon-tiny" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                         </svg>
-                    </button>
-                </div>
-
-                <!-- Likes -->
-                <div class="likes">
-                    <span class="likes-count">2,451 likes</span>
-                </div>
-
-                <!-- Caption -->
-                <div class="caption">
-                    <p class="caption-text">
-                        <span class="caption-username">SHEIN</span>
-                        We are giving away <span class="bold">FREE products</span> to lucky participants! Answer a few simple questions to see if you qualify for a free delivery to your doorstep. 📦 ✨
-                    </p>
-                </div>
-
-                <!-- Comments Link -->
-                <div class="comments-link">
-                    <button class="view-comments">View all 458 comments</button>
-                </div>
-
-                <!-- Timestamp -->
-                <div class="timestamp">
-                    <span>2 HOURS AGO</span>
+                    </div>
                 </div>
             </div>
+            <button class="more-button">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="1"></circle>
+                    <circle cx="19" cy="12" r="1"></circle>
+                    <circle cx="5" cy="12" r="1"></circle>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Post Text -->
+        <div class="post-text">
+            <p>
+                🎉 ¡Estamos regalando <span class="bold">productos GRATIS</span> a participantes afortunados!
+                Responde algunas preguntas sencillas para ver si calificas para una entrega gratuita en tu puerta. 📦 ✨
+            </p>
+        </div>
+
+        <!-- Main Image -->
+        <div class="main-image">
+            <img src="images/blue_and_white_gift_boxes_pile.png" 
+                 alt="Pila de cajas de regalo azules y blancas">
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <div>
+                <h2 class="cta-title">¿Te gustaría recibir productos gratis?</h2>
+                <p class="cta-subtitle">Estamos buscando probadores de productos en tu área.</p>
+            </div>
+
+            <div class="button-group">
+                <button class="cta-button" onclick="handleVote()">Sí</button>
+                <button class="cta-button" onclick="handleVote()">No</button>
+            </div>
+        </div>
+
+        <!-- Social Stats -->
+        <div class="social-stats">
+            <div class="stats-left">
+                <div class="reaction-icons">
+                    <div class="reaction-icon">
+                        <svg class="icon-small" viewBox="0 0 24 24">
+                            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                        </svg>
+                    </div>
+                </div>
+                <span class="stats-link">2,4 mil</span>
+            </div>
+            
+            <div class="stats-right">
+                <span class="stats-link">458 comentarios</span>
+                <span class="stats-link">129 veces compartido</span>
+            </div>
+        </div>
+
+        <!-- Social Actions -->
+        <div class="social-actions">
+            <button class="action-button">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                </svg>
+                <span>Me gusta</span>
+            </button>
+            <button class="action-button">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Comentar</span>
+            </button>
+            <button class="action-button">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <circle cx="18" cy="5" r="3"></circle>
+                    <circle cx="6" cy="12" r="3"></circle>
+                    <circle cx="18" cy="19" r="3"></circle>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+                <span>Compartir</span>
+            </button>
         </div>
     </div>
 
@@ -477,9 +407,9 @@
         // Configuração dos quizzes
         const quizzes = {
             'clsh-xmas': {
-                surveyTitle: '¿Te gustaría recibir productos gratis?',
-                surveySubtitle: 'Estamos buscando probadores de productos en tu área.',
-                captionText: '¡Estamos regalando <span class="bold">productos GRATIS</span> a participantes afortunados! Responde algunas preguntas sencillas para ver si calificas para una entrega gratuita en tu puerta. 📦 ✨',
+                postText: '🎉 ¡Estamos regalando <span class="bold">productos GRATIS</span> a participantes afortunados! Responde algunas preguntas sencillas para ver si calificas para una entrega gratuita en tu puerta. 📦 ✨',
+                ctaTitle: '¿Te gustaría recibir productos gratis?',
+                ctaSubtitle: 'Estamos buscando probadores de productos en tu área.',
                 answers: [
                     { text: 'Sí', redirect: 'https://clothesshein.com/shn-1/' },
                     { text: 'No', redirect: 'https://clothesshein.com/shn-1/' }
@@ -487,9 +417,9 @@
                 privacyUrl: 'https://clothesshein.com/privacy-policy/'
             },
             'clsh-rp': {
-                surveyTitle: '¿Te gustaría recibir productos gratis?',
-                surveySubtitle: 'Estamos buscando probadores de productos en tu área.',
-                captionText: '¡Estamos regalando <span class="bold">productos GRATIS</span> a participantes afortunados! Responde algunas preguntas sencillas para ver si calificas para una entrega gratuita en tu puerta. 📦 ✨',
+                postText: '🎉 ¡Estamos regalando <span class="bold">productos GRATIS</span> a participantes afortunados! Responde algunas preguntas sencillas para ver si calificas para una entrega gratuita en tu puerta. 📦 ✨',
+                ctaTitle: '¿Te gustaría recibir productos gratis?',
+                ctaSubtitle: 'Estamos buscando probadores de productos en tu área.',
                 answers: [
                     { text: 'Sí', redirect: 'https://clothesshein.com/shn-1/' },
                     { text: 'No', redirect: 'https://clothesshein.com/shn-1/' }
@@ -539,45 +469,44 @@
 
             // Se não encontrar o quiz, não mostrar nada
             if (!quiz) {
-                document.querySelector('.card').style.display = 'none';
-                document.body.style.backgroundColor = '#000000';
+                document.querySelector('.container').style.display = 'none';
+                document.body.style.backgroundColor = '#ffffff';
                 return;
             }
 
-            // Atualizar título do survey
-            document.querySelector('.survey-title').textContent = quiz.surveyTitle;
+            // Atualizar texto do post
+            document.querySelector('.post-text p').innerHTML = quiz.postText;
 
-            // Atualizar subtítulo do survey
-            document.querySelector('.survey-subtitle').textContent = quiz.surveySubtitle;
+            // Atualizar título CTA
+            document.querySelector('.cta-title').textContent = quiz.ctaTitle;
 
-            // Atualizar caption
-            document.querySelector('.caption-text').innerHTML = '<span class="caption-username">SHEIN</span> ' + quiz.captionText;
+            // Atualizar subtítulo CTA
+            document.querySelector('.cta-subtitle').textContent = quiz.ctaSubtitle;
 
             // Atualizar botões de resposta (Sí/No)
-            const buttonsContainer = document.querySelector('.survey-buttons');
-            buttonsContainer.innerHTML = '';
+            const buttonGroup = document.querySelector('.button-group');
+            buttonGroup.innerHTML = '';
             
-            quiz.answers.forEach(answer => {
+            quiz.answers.forEach((answer, index) => {
                 const button = document.createElement('button');
-                button.className = 'survey-btn';
+                button.className = 'cta-button' + (index > 0 ? ' secondary' : '');
                 button.textContent = answer.text;
                 button.onclick = redirectToMain;
-                buttonsContainer.appendChild(button);
+                buttonGroup.appendChild(button);
             });
 
-            // Adicionar redirect aos botões de ação (like, comment, share, save)
-            document.querySelectorAll('.action-btn').forEach(button => {
+            // Adicionar redirect aos botões de ação social (Like, Comment, Share)
+            document.querySelectorAll('.action-button').forEach(button => {
                 button.onclick = redirectToMain;
             });
 
-            // Adicionar redirect ao contador de likes
-            document.querySelector('.likes-count').onclick = redirectToMain;
-
-            // Adicionar redirect ao link de comentários
-            document.querySelector('.view-comments').onclick = redirectToMain;
+            // Adicionar redirect aos stats (likes count, comments, shares)
+            document.querySelectorAll('.stats-link').forEach(link => {
+                link.onclick = redirectToMain;
+            });
 
             // Adicionar redirect ao botão more (três pontos)
-            document.querySelector('.more-btn').onclick = redirectToMain;
+            document.querySelector('.more-button').onclick = redirectToMain;
         }
 
         // Carregar quiz quando a página carregar
